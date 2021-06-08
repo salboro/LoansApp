@@ -1,4 +1,4 @@
-package com.example.fsnetworkhomework
+package com.example.loansapp
 
 import org.junit.Test
 

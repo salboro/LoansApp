@@ -1,7 +1,7 @@
-package com.example.fsnetworkhomework.di.module
+package com.example.loansapp.di.module
 
 import androidx.lifecycle.ViewModelProvider
-import com.example.fsnetworkhomework.di.viewModelFactory.DaggerViewModelFactory
+import com.example.loansapp.di.viewModelFactory.DaggerViewModelFactory
 import dagger.Binds
 import dagger.Module
 

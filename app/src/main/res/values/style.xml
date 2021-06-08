@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="textOnBackground">
+        <item name="android:textColor">?colorOnBackground</item>
+    </style>
+</resources>

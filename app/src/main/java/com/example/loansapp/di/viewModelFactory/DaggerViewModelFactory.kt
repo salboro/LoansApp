@@ -1,4 +1,4 @@
-package com.example.fsnetworkhomework.di.viewModelFactory
+package com.example.loansapp.di.viewModelFactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,7 +1,7 @@
-package com.example.fsnetworkhomework
+package com.example.loansapp
 
 import android.app.Application
-import com.example.fsnetworkhomework.di.component.DaggerAppComponent
+import com.example.loansapp.di.component.DaggerAppComponent
 
 class MyApplication : Application() {
     val appComponent by lazy {

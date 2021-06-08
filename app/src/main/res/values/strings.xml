@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">FSNetworkHomeWork</string>
+    <string name="app_name">LoansApp</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="do_you_accept_something">Do you accept something?</string>
+    <string name="you_don_t_have_account_yet_go_to_register_page">You don\'t have account yet? Go to Register page!</string>
+    <string name="you_already_have_account_go_to_login_page">You already have account? Go to login page!</string>
 </resources>

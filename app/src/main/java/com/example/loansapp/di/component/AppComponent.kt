@@ -1,4 +1,4 @@
-package com.example.fsnetworkhomework.di.component
+package com.example.loansapp.di.component
 
 import dagger.Component
 
