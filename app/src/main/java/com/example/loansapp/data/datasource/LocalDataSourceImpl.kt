@@ -1,8 +1,6 @@
 package com.example.loansapp.data.datasource
 
 import android.content.SharedPreferences
-import android.util.Log
-import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
