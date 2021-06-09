@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.loansapp.domain.entity.AuthorizeResultType
 import com.example.loansapp.domain.entity.ResultType
 import com.example.loansapp.domain.usecase.UserLoginUseCase
 import io.reactivex.disposables.CompositeDisposable
@@ -20,16 +21,13 @@ class LoginViewModel @Inject constructor(
     val state: LiveData<LoginViewState> = _state
 
     fun login(name: String, password: String) {
-        Log.i("call", "viewModel")
         loginUseCase(name,password).subscribe({
-            Log.i("call", "succ")
             when (it) {
-                is ResultType.Success -> _state.postValue(LoginViewState.SuccessAuthorised(it.data))
-                is ResultType.Error -> _state.postValue(LoginViewState.Error(it.error))
+                is AuthorizeResultType.Success -> _state.postValue(LoginViewState.SuccessAuthorised)
+                is AuthorizeResultType.Error -> _state.postValue(LoginViewState.Error(it.error))
             }
 
         }, {
-            Log.i("call", it.stackTraceToString())
         }).addTo(compositeDisposable)
     }
 }

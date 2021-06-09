@@ -1,8 +1,8 @@
 package com.example.loansapp.domain
 
-import com.example.loansapp.domain.entity.ErrorEntity
+import com.example.loansapp.domain.entity.ErrorType
 
 interface ErrorHandler {
 
-    fun getError(code: Int): ErrorEntity
+    fun getError(code: Int): ErrorType
 }

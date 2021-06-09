@@ -1,15 +1,13 @@
 package com.example.loansapp.presentation.enter.login
 
-import com.example.loansapp.domain.entity.ErrorEntity
+import com.example.loansapp.domain.entity.ErrorType
 
 sealed class LoginViewState {
-    object Default: LoginViewState()
+    object Default : LoginViewState()
 
-    data class SuccessAuthorised(
-        val token: String
-    ): LoginViewState()
+    object SuccessAuthorised : LoginViewState()
 
     data class Error(
-        val reason: ErrorEntity
-    ): LoginViewState()
+        val reason: ErrorType
+    ) : LoginViewState()
 }

@@ -5,7 +5,7 @@ import com.example.loansapp.domain.entity.ResultType
 import io.reactivex.Single
 
 
-interface LoansDataSource {
+interface RemoteDataSource {
     fun login(name: String, password: String): Single<ResultType<String>>
 
     fun register(name: String, password: String): Single<ResultType<RegistrationRequest>>

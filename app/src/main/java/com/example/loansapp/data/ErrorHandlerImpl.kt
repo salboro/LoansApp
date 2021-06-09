@@ -1,7 +1,7 @@
 package com.example.loansapp.data
 
 import com.example.loansapp.domain.ErrorHandler
-import com.example.loansapp.domain.entity.ErrorEntity
+import com.example.loansapp.domain.entity.ErrorType
 
 class ErrorHandlerImpl : ErrorHandler {
 
@@ -12,17 +12,17 @@ class ErrorHandlerImpl : ErrorHandler {
         const val NOT_FOUND_RESPONSE_CODE = 403
     }
 
-    override fun getError(code: Int): ErrorEntity {
+    override fun getError(code: Int): ErrorType {
         return when (code) {
-            UNSATISFIABLE_RESPONSE_CODE -> ErrorEntity.Network
+            UNSATISFIABLE_RESPONSE_CODE -> ErrorType.Network
 
-            UNAUTHORIZED_RESPONSE_CODE -> ErrorEntity.Unauthorized
+            UNAUTHORIZED_RESPONSE_CODE -> ErrorType.Unauthorized
 
-            FORBIDDEN_RESPONSE_CODE -> ErrorEntity.AccessDenied
+            FORBIDDEN_RESPONSE_CODE -> ErrorType.AccessDenied
 
-            NOT_FOUND_RESPONSE_CODE -> ErrorEntity.NotFound
+            NOT_FOUND_RESPONSE_CODE -> ErrorType.NotFound
 
-            else -> ErrorEntity.Unknown
+            else -> ErrorType.Unknown
         }
     }
 }

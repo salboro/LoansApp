@@ -1,5 +1,9 @@
 package com.example.loansapp.di.module
 
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.example.loansapp.data.network.LoansApiService
 import com.example.loansapp.di.converterFactory.ConverterFactory
 import com.example.loansapp.di.scope.AppScope
@@ -14,6 +18,19 @@ private const val BASE_URL = "http://103.23.208.205:8082/"
 
 @Module
 class DataModule {
+    @AppScope
+    @Provides
+    fun provideEncryptedSharedPreferences(context: Context): SharedPreferences {
+        val masterKey = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+
+        return EncryptedSharedPreferences.create(
+            "EncryptedPreferences",
+            masterKey,
+            context,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
     @AppScope
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder()

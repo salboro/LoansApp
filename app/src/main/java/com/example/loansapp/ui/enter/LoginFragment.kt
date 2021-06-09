@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) {
             when (it) {
                 is LoginViewState.SuccessAuthorised -> {
-                    Toast.makeText(requireContext(), it.token, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Success", Toast.LENGTH_LONG).show()
                 }
                 is LoginViewState.Error -> {
                     Toast.makeText(requireContext(), it.reason.toString(), Toast.LENGTH_LONG).show()
@@ -45,7 +45,6 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
-            Log.i("call", "click")
             viewModel.login("string", "string")
         }
 

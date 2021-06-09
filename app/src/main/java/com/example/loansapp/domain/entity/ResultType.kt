@@ -6,6 +6,6 @@ sealed class ResultType<T> {
     ) : ResultType<T>()
 
     data class Error<T>(
-        val error: ErrorEntity
+        val error: ErrorType
     ) : ResultType<T>()
 }

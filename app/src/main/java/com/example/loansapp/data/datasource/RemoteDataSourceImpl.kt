@@ -9,16 +9,9 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import javax.inject.Inject
 
-class RemoteLoansDataSource @Inject constructor(
+class RemoteDataSourceImpl @Inject constructor(
     private val apiService: LoansApiService
-) : LoansDataSource {
-
-    companion object {
-        const val USER_ALREADY_EXIST_RESPONSE_CODE = 400
-        const val UNAUTHORIZED_RESPONSE_CODE = 401
-        const val FORBIDDEN_RESPONSE_CODE = 402
-        const val NOT_FOUND_RESPONSE_CODE = 403
-    }
+) : RemoteDataSource {
 
     override fun login(name: String, password: String): Single<ResultType<String>> {
         val mediaType = MediaType.parse("application/json")
@@ -31,7 +24,6 @@ class RemoteLoansDataSource @Inject constructor(
             if (it.isSuccessful) {
                 ResultType.Success(it.body()!!)
             } else {
-                val s = it.errorBody()!!.string()
                 ResultType.Error(ErrorHandlerImpl().getError(it.code()))
             }
         }
