@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.loansapp.R
 import com.example.loansapp.databinding.EnterFragmentBinding
-import com.example.loansapp.presentation.main.EnterViewModel
+import com.example.loansapp.presentation.enter.EnterViewModel
 import com.example.loansapp.utils.transformer.ZoomOutPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 
