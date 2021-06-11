@@ -2,7 +2,6 @@ package com.example.loansapp.data
 
 import com.example.loansapp.data.datasource.LocalDataSource
 import com.example.loansapp.data.datasource.RemoteDataSource
-import com.example.loansapp.data.network.RegistrationRequest
 import com.example.loansapp.domain.AuthorizationRepository
 import com.example.loansapp.domain.entity.AuthorizeResultType
 import com.example.loansapp.domain.entity.ResultType
@@ -34,6 +33,16 @@ class AuthorizationRepositoryImpl @Inject constructor(
                 }
             }.subscribeOn(Schedulers.io())
 
-    override fun register(name: String, password: String): Single<ResultType<RegistrationRequest>> =
-        remoteDataSource.register(name, password).subscribeOn(Schedulers.io())
+    override fun register(name: String, password: String): Single<AuthorizeResultType> =
+        remoteDataSource.register(name, password).map {
+            when (it) {
+                is ResultType.Success -> {
+                    AuthorizeResultType.Success
+                }
+
+                is ResultType.Error -> {
+                    AuthorizeResultType.Error(it.error)
+                }
+            }
+        }.subscribeOn(Schedulers.io())
 }

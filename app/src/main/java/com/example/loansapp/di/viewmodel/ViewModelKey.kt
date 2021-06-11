@@ -1,4 +1,4 @@
-package com.example.loansapp.di.viewModelFactory
+package com.example.loansapp.di.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

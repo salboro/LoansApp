@@ -1,4 +1,4 @@
-package com.example.loansapp.di.converterFactory
+package com.example.loansapp.di.converter
 
 import com.squareup.moshi.Moshi
 import okhttp3.ResponseBody

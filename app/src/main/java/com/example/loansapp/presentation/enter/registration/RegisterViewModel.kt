@@ -1,26 +1,26 @@
-package com.example.loansapp.presentation.enter.login
+package com.example.loansapp.presentation.enter.registration
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.loansapp.domain.entity.AuthorizeResultType
 import com.example.loansapp.domain.entity.ErrorType
-import com.example.loansapp.domain.usecase.UserLoginUseCase
+import com.example.loansapp.domain.usecase.UserRegistrationUseCase
 import com.example.loansapp.presentation.BaseViewModel
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
-    private val loginUseCase: UserLoginUseCase
+class RegisterViewModel @Inject constructor(
+    private val registrationUseCase: UserRegistrationUseCase
 ) : BaseViewModel() {
 
-    private val _state = MutableLiveData<LoginViewState>()
-    val state: LiveData<LoginViewState> = _state
+    private val _state = MutableLiveData<RegistrationViewState>()
+    val state: LiveData<RegistrationViewState> = _state
 
-    fun login(name: String, password: String) {
+    fun register(name: String, password: String) {
         if (name.isNotEmpty() || password.isNotEmpty()) {
-            _state.postValue(LoginViewState.Loading)
+            _state.postValue(RegistrationViewState.Loading)
 
-            loginUseCase(name, password)
+            registrationUseCase(name, password)
                 .subscribe(::onSuccess, ::onError)
                 .untilDestroy()
 
@@ -31,17 +31,17 @@ class LoginViewModel @Inject constructor(
 
     private fun onSuccess(result: AuthorizeResultType) {
         when (result) {
-            is AuthorizeResultType.Success -> _state.postValue(LoginViewState.SuccessAuthorised)
+            is AuthorizeResultType.Success -> _state.postValue(RegistrationViewState.SuccessRegistered)
             is AuthorizeResultType.Error -> sendError(result.error)
         }
     }
 
     private fun onError(error: Throwable) {
-        Log.i("login error", error.stackTraceToString())
+        Log.i("register error", error.stackTraceToString())
         sendError(ErrorType.Connection)
     }
 
     private fun sendError(error: ErrorType) {
-        _state.postValue(LoginViewState.Error(error))
+        _state.postValue(RegistrationViewState.Error(error))
     }
 }

@@ -8,4 +8,10 @@
     <string name="you_already_have_account_go_to_login_page">You already have account? Go to login page!</string>
     <string name="title_app_icon">Title app icon</string>
     <string name="name">Name</string>
+    <string name="you_entered_your_username_or_password_incorrectly">You entered your username or password incorrectly</string>
+    <string name="something_went_wrong_try_later">Something went wrong. Try later</string>
+    <string name="check_your_internet_connection">Check your internet connection</string>
+    <string name="name_or_password_is_invalid">Name or password is invalid</string>
+    <string name="you_successfully_registered_now_you_might_try_login_with_your_data">You successfully registered! Now you might try login with your data :)</string>
+    <string name="user_with_the_same_data_already_exist">User with the same data already exist</string>
 </resources>

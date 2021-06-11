@@ -7,9 +7,11 @@ sealed class ErrorType {
 
     object NotFound : ErrorType()
 
+    object InvalidData : ErrorType()
+
     object AccessDenied : ErrorType()
 
-    object ServiceUnavailable : ErrorType()
+    object Connection : ErrorType()
 
     object Unknown : ErrorType()
 }

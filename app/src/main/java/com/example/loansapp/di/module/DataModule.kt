@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.example.loansapp.data.network.LoansApiService
-import com.example.loansapp.di.converterFactory.ConverterFactory
+import com.example.loansapp.di.converter.ConverterFactory
 import com.example.loansapp.di.scope.AppScope
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

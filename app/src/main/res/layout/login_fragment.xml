@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/registerCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,28 +9,24 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/registerEmailField"
+                android:id="@+id/loginNameField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:hint="@string/name"
+                android:paddingHorizontal="@dimen/enter_screen_horizontal_padding_margin"
                 app:startIconContentDescription="@string/name"
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
@@ -37,46 +34,71 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/registerPasswordField"
+                android:id="@+id/loginPasswordField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="36dp"
+                android:paddingHorizontal="@dimen/enter_screen_horizontal_padding_margin"
                 android:hint="@string/password"
                 app:startIconContentDescription="@string/password"
                 app:startIconDrawable="@drawable/ic_baseline_password_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginPasswordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/loginErrorCard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/enter_screen_horizontal_padding_margin"
+                android:alpha="0"
+                android:visibility="gone"
+                app:cardBackgroundColor="?colorError"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/loginErrorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textAlignment="center"
+                    android:textColor="?colorOnError"
+                    tools:text="Something went wrong" />
+            </androidx.cardview.widget.CardView>
+
             <ProgressBar
                 android:id="@+id/loginProgressBar"
                 style="?android:attr/progressBarStyle"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0"/>
+                android:alpha="0"
+                android:visibility="gone" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/enter_screen_horizontal_padding_margin"
                 android:text="@string/login"
                 app:cornerRadius="8dp" />
 
             <TextView
                 android:id="@+id/loginNoticeText"
+                style="@style/textOnBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:paddingHorizontal="@dimen/enter_screen_horizontal_padding_margin"
                 android:gravity="center"
-                android:text="@string/you_don_t_have_account_yet_go_to_register_page"
-                style="@style/textOnBackground"/>
+                android:text="@string/you_don_t_have_account_yet_go_to_register_page" />
         </LinearLayout>
-    </ScrollView>
-
 </androidx.cardview.widget.CardView>

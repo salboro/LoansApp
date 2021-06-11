@@ -25,11 +25,14 @@ class EnterFragment : Fragment() {
 
     private lateinit var binding: EnterFragmentBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = EnterFragmentBinding.inflate(layoutInflater, container, false)
 
         binding.pager.adapter = ScreenSlidePagerAdapter(this)
+        binding.pager.requestDisallowInterceptTouchEvent(false)
         binding.pager.isUserInputEnabled = false
         binding.pager.setPageTransformer(ZoomOutPageTransformer())
 
@@ -55,7 +58,7 @@ class EnterFragment : Fragment() {
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> LoginFragment.newInstance()
-                1 -> RegisterFragment.newInstance()
+                1 -> RegistrationFragment.newInstance()
                 else -> throw ExceptionInInitializerError("There's no page with that num!")
             }
         }

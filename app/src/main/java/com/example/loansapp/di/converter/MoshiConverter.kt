@@ -1,4 +1,4 @@
-package com.example.loansapp.di.converterFactory
+package com.example.loansapp.di.converter
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
