@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="?backgroundColor"
+    android:id="@+id/scrollViewForPager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".ui.enter.EnterFragment">
+    android:scrollbars="none">
 
-    <ImageView
-        android:id="@+id/titleIconImage"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="32dp"
-        android:contentDescription="@string/title_app_icon"
-        android:scaleX="2.5"
-        android:scaleY="2.5"
-        android:src="@mipmap/ic_coin_foreground"
-        android:layout_gravity="center" />
+        android:background="?backgroundColor"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".ui.enter.EnterFragment">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/enterOptionsTabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="8dp"
-        android:layout_gravity="start"
-        app:tabGravity="start"
-        app:tabMode="auto"
-        app:tabPaddingEnd="12dp"
-        app:tabPaddingStart="0dp"
-        app:tabRippleColor="@null"
-        app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium">
+        <ImageView
+            android:id="@+id/titleIconImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="@string/title_app_icon"
+            android:scaleX="2.5"
+            android:scaleY="2.5"
+            android:src="@mipmap/ic_coin_foreground" />
 
-    </com.google.android.material.tabs.TabLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/enterOptionsTabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            app:tabGravity="start"
+            app:tabMode="auto"
+            app:tabPaddingEnd="12dp"
+            app:tabPaddingStart="0dp"
+            app:tabRippleColor="@null"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium">
 
-    <ScrollView
-        android:id="@+id/scrollViewForPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
+        </com.google.android.material.tabs.TabLayout>
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp" />
-    </ScrollView>
 
-</LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
