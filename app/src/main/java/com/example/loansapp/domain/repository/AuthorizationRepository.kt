@@ -1,4 +1,4 @@
-package com.example.loansapp.domain
+package com.example.loansapp.domain.repository
 
 import com.example.loansapp.domain.entity.AuthorizeResultType
 import io.reactivex.Single

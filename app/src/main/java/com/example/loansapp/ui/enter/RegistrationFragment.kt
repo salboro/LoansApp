@@ -16,6 +16,7 @@ import com.example.loansapp.presentation.enter.registration.RegistrationViewStat
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView
 import com.example.loansapp.utils.anim.shake
+import com.example.loansapp.utils.closeKeyboard
 import javax.inject.Inject
 
 class RegistrationFragment : Fragment() {
@@ -40,6 +41,8 @@ class RegistrationFragment : Fragment() {
         }
 
         binding.registerButton.setOnClickListener {
+            it.closeKeyboard()
+
             viewModel.register(
                 binding.registerNameEditText.text.toString(),
                 binding.registerPasswordEditText.text.toString()

@@ -17,6 +17,7 @@ import com.example.loansapp.ui.loans.LoansFragment
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView
 import com.example.loansapp.utils.anim.shake
+import com.example.loansapp.utils.closeKeyboard
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -41,6 +42,8 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginButton.setOnClickListener {
+            it.closeKeyboard()
+
             viewModel.login(
                 binding.loginNameEditText.text.toString(),
                 binding.loginPasswordEditText.text.toString()
@@ -49,6 +52,7 @@ class LoginFragment : Fragment() {
 
         return binding.root
     }
+
 
     private fun renderState(state: LoginViewState?) {
         when (state) {

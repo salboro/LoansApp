@@ -1,10 +1,10 @@
-package com.example.loansapp.data
+package com.example.loansapp.data.repository
 
 import com.example.loansapp.data.datasource.LocalDataSource
 import com.example.loansapp.data.datasource.RemoteDataSource
-import com.example.loansapp.domain.AuthorizationRepository
 import com.example.loansapp.domain.entity.AuthorizeResultType
 import com.example.loansapp.domain.entity.ResultType
+import com.example.loansapp.domain.repository.AuthorizationRepository
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

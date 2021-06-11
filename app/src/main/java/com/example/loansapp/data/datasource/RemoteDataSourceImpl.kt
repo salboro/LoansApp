@@ -1,7 +1,9 @@
 package com.example.loansapp.data.datasource
 
 import com.example.loansapp.data.ErrorHandlerImpl
+import com.example.loansapp.data.network.Loan
 import com.example.loansapp.data.network.LoansApiService
+import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.data.network.RegistrationRequest
 import com.example.loansapp.domain.entity.ResultType
 import io.reactivex.Single
@@ -19,7 +21,7 @@ class RemoteDataSourceImpl @Inject constructor(
         val body = RequestBody.create(mediaType, createBodyContentString(name, password))
         val response = apiService.login(headers, body)
 
-        //Return beaver authorisation token or error code
+        //Return beaver authorisation token or error entity
         return response.map {
             if (it.isSuccessful) {
                 ResultType.Success(it.body()!!)
@@ -35,7 +37,7 @@ class RemoteDataSourceImpl @Inject constructor(
         val body = RequestBody.create(mediaType, createBodyContentString(name, password))
         val response = apiService.registration(headers, body)
 
-        //Return registerRequest or error code
+        //Return registerRequest or error entity
         return response.map {
             if (it.isSuccessful) {
                 ResultType.Success(it.body()!!)
@@ -45,5 +47,34 @@ class RemoteDataSourceImpl @Inject constructor(
         }
     }
 
-    private fun createBodyContentString(name: String, password: String) = "{ \"name\": \"$name\", \"password\": \"$password\"}"
+    override fun getLoans(authorizationToken: String): Single<ResultType<List<Loan>>> {
+        val headers = mapOf("accept" to "*/*", "authorization" to authorizationToken)
+        val response = apiService.getLoans(headers)
+
+        //Return loans list or error entity
+        return response.map {
+            if (it.isSuccessful) {
+                ResultType.Success(it.body()!!)
+            } else {
+                ResultType.Error(ErrorHandlerImpl().getError(it.code()))
+            }
+        }
+    }
+
+    override fun getLoansConditions(authorizationToken: String): Single<ResultType<LoansConditions>> {
+        val headers = mapOf("accept" to "*/*", "authorization" to authorizationToken)
+        val response = apiService.getLoansConditions(headers)
+
+        //Return loans conditions or error entity
+        return response.map {
+            if (it.isSuccessful) {
+                ResultType.Success(it.body()!!)
+            } else {
+                ResultType.Error(ErrorHandlerImpl().getError(it.code()))
+            }
+        }
+    }
+
+    private fun createBodyContentString(name: String, password: String) =
+        "{ \"name\": \"$name\", \"password\": \"$password\"}"
 }

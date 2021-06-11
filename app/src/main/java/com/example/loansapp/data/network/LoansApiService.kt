@@ -6,6 +6,7 @@ import io.reactivex.Single
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 
@@ -25,5 +26,17 @@ interface LoansApiService {
         @Body requestBody: RequestBody
     ): Single<Response<RegistrationRequest>>
 
+
+    @GET("loans/all")
+    @MoshiConverter
+    fun getLoans(
+        @HeaderMap headers: Map<String, String>
+    ): Single<Response<List<Loan>>>
+
+    @GET("loans/conditions")
+    @MoshiConverter
+    fun getLoansConditions(
+        @HeaderMap headers: Map<String, String>
+    ): Single<Response<LoansConditions>>
 
 }

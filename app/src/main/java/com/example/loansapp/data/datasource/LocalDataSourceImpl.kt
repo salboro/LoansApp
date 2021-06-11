@@ -1,7 +1,6 @@
 package com.example.loansapp.data.datasource
 
 import android.content.SharedPreferences
-import io.reactivex.Single
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(
@@ -18,7 +17,7 @@ class LocalDataSourceImpl @Inject constructor(
             .apply()
     }
 
-    override fun getBearerToken(): Single<String> = Single.just(
+    override fun getBearerToken(): String =
         preferences.getString(BEARER_TOKEN_STRING_NAME, "") ?: ""
-    )
+
 }

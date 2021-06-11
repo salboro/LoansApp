@@ -6,6 +6,7 @@ import com.example.loansapp.di.module.AppSubcomponents
 import com.example.loansapp.di.module.DataModule
 import com.example.loansapp.di.scope.AppScope
 import com.example.loansapp.di.subcomponent.AuthorizationComponent
+import com.example.loansapp.di.subcomponent.LoansComponent
 import dagger.BindsInstance
 import dagger.Component
 
@@ -18,4 +19,6 @@ interface AppComponent {
     }
 
     fun authorizationComponent(): AuthorizationComponent.Factory
+
+    fun loansComponent(): LoansComponent.Factory
 }

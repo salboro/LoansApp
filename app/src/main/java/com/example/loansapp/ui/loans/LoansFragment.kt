@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.loansapp.databinding.LoansFragmentBinding
+import com.example.loansapp.presentation.loans.LoansViewModel
+import javax.inject.Inject
 
 class LoansFragment : Fragment() {
 
@@ -14,7 +16,8 @@ class LoansFragment : Fragment() {
         fun newInstance() = LoansFragment()
     }
 
-    private lateinit var viewModel: LoansViewModel
+    @Inject
+    lateinit var viewModel: LoansViewModel
 
     private lateinit var binding: LoansFragmentBinding
 

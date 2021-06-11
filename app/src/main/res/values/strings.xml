@@ -14,4 +14,7 @@
     <string name="name_or_password_is_invalid">Name or password is invalid</string>
     <string name="you_successfully_registered_now_you_might_try_login_with_your_data">You successfully registered! Now you might try login with your data :)</string>
     <string name="user_with_the_same_data_already_exist">User with the same data already exist</string>
+    <string name="your_loans">Your loans</string>
+    <string name="loan_condition_for_you">Loan condition for you</string>
+    <string name="if_you_accept_with_it_just_click">If you accept with it, just click!</string>
 </resources>

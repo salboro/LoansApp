@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.loansapp.R
 import com.example.loansapp.databinding.EnterFragmentBinding
-import com.example.loansapp.presentation.enter.EnterViewModel
 import com.example.loansapp.utils.transformer.ZoomOutPageTransformer
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -21,8 +19,6 @@ class EnterFragment : Fragment() {
         private const val NUM_PAGES = 2
     }
 
-    private lateinit var viewModel: EnterViewModel
-
     private lateinit var binding: EnterFragmentBinding
 
     override fun onCreateView(
@@ -32,7 +28,6 @@ class EnterFragment : Fragment() {
         binding = EnterFragmentBinding.inflate(layoutInflater, container, false)
 
         binding.pager.adapter = ScreenSlidePagerAdapter(this)
-        binding.pager.requestDisallowInterceptTouchEvent(false)
         binding.pager.isUserInputEnabled = false
         binding.pager.setPageTransformer(ZoomOutPageTransformer())
 
@@ -44,12 +39,6 @@ class EnterFragment : Fragment() {
         }.attach()
 
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(EnterViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     private inner class ScreenSlidePagerAdapter(f: Fragment) : FragmentStateAdapter(f) {
