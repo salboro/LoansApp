@@ -1,7 +1,6 @@
 package com.example.loansapp.data.network
 
 import com.squareup.moshi.JsonClass
-import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class RegistrationRequest(
@@ -10,15 +9,20 @@ data class RegistrationRequest(
 )
 
 @JsonClass(generateAdapter = true)
+data class GetLoansRequest(
+    val loans: List<Loan>
+)
+
+@JsonClass(generateAdapter = true)
 data class Loan(
     val id: Int,
     val firstName: String,
-    val secondName: String,
+    val lastName: String,
     val amount: Double,
     val percent: Double,
     val phoneNumber: String,
     val period: Int,
-    val date: Date,
+    val date: String,
     val state: String
 )
 

@@ -16,7 +16,7 @@ class ErrorHandlerImpl : ErrorHandler {
         return when (code) {
             UNSATISFIABLE_RESPONSE_CODE -> ErrorType.Network
 
-            UNAUTHORIZED_RESPONSE_CODE -> ErrorType.Unauthorized
+            UNAUTHORIZED_RESPONSE_CODE -> ErrorType.AccessDenied
 
             FORBIDDEN_RESPONSE_CODE -> ErrorType.AccessDenied
 

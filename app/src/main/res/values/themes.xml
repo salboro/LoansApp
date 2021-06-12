@@ -18,5 +18,7 @@
         <item name="colorError">@color/red_800</item>
         <item name="colorOnError">@color/white</item>
         <item name="fontFamily">@font/quando</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
     </style>
 </resources>

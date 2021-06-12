@@ -8,3 +8,6 @@ fun View.closeKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
 }
+
+fun Int.isEven(): Boolean =
+    this % 2 == 0

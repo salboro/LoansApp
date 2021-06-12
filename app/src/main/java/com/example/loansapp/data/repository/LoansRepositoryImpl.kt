@@ -7,6 +7,7 @@ import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.domain.entity.ResultType
 import com.example.loansapp.domain.repository.LoansRepository
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LoansRepositoryImpl @Inject constructor(
@@ -16,9 +17,9 @@ class LoansRepositoryImpl @Inject constructor(
     private val bearerToken: String = localDataSource.getBearerToken()
 
     override fun getLoans(): Single<ResultType<List<Loan>>> =
-        remoteDataSource.getLoans(bearerToken)
+        remoteDataSource.getLoans(bearerToken).subscribeOn(Schedulers.io())
 
 
     override fun getLoansConditions(): Single<ResultType<LoansConditions>> =
-        remoteDataSource.getLoansConditions(bearerToken)
+        remoteDataSource.getLoansConditions(bearerToken).subscribeOn(Schedulers.io())
 }

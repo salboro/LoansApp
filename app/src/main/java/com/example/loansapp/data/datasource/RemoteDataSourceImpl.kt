@@ -54,7 +54,9 @@ class RemoteDataSourceImpl @Inject constructor(
         //Return loans list or error entity
         return response.map {
             if (it.isSuccessful) {
-                ResultType.Success(it.body()!!)
+                it.body()?.let { list ->
+                    ResultType.Success(list)
+                }
             } else {
                 ResultType.Error(ErrorHandlerImpl().getError(it.code()))
             }

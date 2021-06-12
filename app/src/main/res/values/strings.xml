@@ -17,4 +17,9 @@
     <string name="your_loans">Your loans</string>
     <string name="loan_condition_for_you">Loan condition for you</string>
     <string name="if_you_accept_with_it_just_click">If you accept with it, just click!</string>
+    <string name="percent_template">%.2f %%</string>
+    <string name="period_template">%d months</string>
+    <string name="max_amount_template">Max %d rub</string>
+    <string name="amount_template">Amount: %.2f rub</string>
+    <string name="state_template">State: %s</string>
 </resources>
