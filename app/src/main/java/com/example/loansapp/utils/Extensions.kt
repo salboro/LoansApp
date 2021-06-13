@@ -1,6 +1,8 @@
 package com.example.loansapp.utils
 
 import android.content.Context
+import android.content.res.Resources
+import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 
@@ -11,3 +13,9 @@ fun View.closeKeyboard() {
 
 fun Int.isEven(): Boolean =
     this % 2 == 0
+
+fun Resources.Theme.getColor(colorAttr: Int): Int {
+    val typedValue = TypedValue()
+    this.resolveAttribute(colorAttr, typedValue, true)
+    return typedValue.data
+}

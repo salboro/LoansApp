@@ -6,7 +6,6 @@ import android.view.View
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 import androidx.core.view.isVisible
-import com.google.android.material.textfield.TextInputLayout
 
 fun View.fadeReplaceWithView(view: View) {
     val fadeOut = ObjectAnimator.ofFloat(this, View.ALPHA, 0f)
@@ -50,7 +49,7 @@ fun View.fadeInAndFadeOutOverTime(time: Long) {
     animatorSet.start()
 }
 
-fun TextInputLayout.shake() {
+fun View.shake() {
     val leftShake = ObjectAnimator.ofFloat(this, View.TRANSLATION_X, 20f)
         .setDuration(50L)
 
@@ -62,5 +61,77 @@ fun TextInputLayout.shake() {
 
     val animatorSet = AnimatorSet()
     animatorSet.playSequentially(leftShake, rightShake, back)
+    animatorSet.start()
+}
+
+fun View.yScaleOutAndFadeOut(time: Long) {
+    val scaleOut = ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.1f)
+        .setDuration(time)
+
+    val fadeOut = ObjectAnimator.ofFloat(this, View.ALPHA, 0f)
+        .setDuration(time)
+
+    val animatorSet = AnimatorSet()
+    animatorSet.playTogether(scaleOut, fadeOut)
+    animatorSet.doOnEnd {
+        this.isVisible = false
+    }
+    animatorSet.start()
+}
+
+fun View.yScaleInAndFadeIn(time: Long) {
+    val scaleIn = ObjectAnimator.ofFloat(this, View.SCALE_Y, 1f)
+        .setDuration(time)
+
+    val fadeIn = ObjectAnimator.ofFloat(this, View.ALPHA, 1f)
+        .setDuration(time)
+
+    val animatorSet = AnimatorSet()
+    animatorSet.playTogether(scaleIn, fadeIn)
+    animatorSet.doOnStart {
+        this.isVisible = true
+    }
+    animatorSet.start()
+}
+
+fun View.disappearInLeftComeFromRight() {
+    val transitionToLeft =
+        ObjectAnimator.ofFloat(this, View.TRANSLATION_X, -this.width * 2.toFloat())
+            .apply {
+                duration = 400L
+                doOnEnd {
+                    translationX = this@disappearInLeftComeFromRight.width * 2.toFloat()
+                }
+            }
+
+    val transitionFromRight = ObjectAnimator.ofFloat(this, View.TRANSLATION_X, 0f)
+        .apply {
+            duration = 400L
+            startDelay = 700L
+        }
+
+    val animatorSet = AnimatorSet()
+    animatorSet.playSequentially(transitionToLeft, transitionFromRight)
+    animatorSet.start()
+}
+
+fun View.disappearInRightComeFromLeft() {
+    val transitionToLeft =
+        ObjectAnimator.ofFloat(this, View.TRANSLATION_X, this.width * 2.toFloat())
+            .apply {
+                duration = 400L
+                doOnEnd {
+                    translationX = -this@disappearInRightComeFromLeft.width * 2.toFloat()
+                }
+            }
+
+    val transitionFromRight = ObjectAnimator.ofFloat(this, View.TRANSLATION_X, 0f)
+        .apply {
+            duration = 400L
+            startDelay = 700L
+        }
+
+    val animatorSet = AnimatorSet()
+    animatorSet.playSequentially(transitionToLeft, transitionFromRight)
     animatorSet.start()
 }

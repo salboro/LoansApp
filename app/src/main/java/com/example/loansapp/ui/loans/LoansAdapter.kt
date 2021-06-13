@@ -1,5 +1,6 @@
 package com.example.loansapp.ui.loans
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.loansapp.R
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.databinding.LoanItemBinding
+import com.example.loansapp.utils.getColor
+import com.example.loansapp.utils.isEven
 
 class LoansAdapter(private val onClick: (Loan) -> Unit) :
     ListAdapter<Loan, LoanViewHolder>(DiffCallback()) {
@@ -36,8 +39,18 @@ class LoanViewHolder(
     private val context: Context
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    @SuppressLint("ResourceType")
     fun bind(loan: Loan) {
         binding.amountText.text = context.resources.getString(R.string.amount_template, loan.amount)
         binding.stateText.text = context.resources.getString(R.string.state_template, loan.state)
+
+
+        if (layoutPosition.isEven()) {
+            binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimaryVariant))
+        } else {
+            binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimary))
+        }
+
+
     }
 }

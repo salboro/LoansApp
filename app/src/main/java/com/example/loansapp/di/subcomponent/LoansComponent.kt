@@ -2,6 +2,7 @@ package com.example.loansapp.di.subcomponent
 
 import com.example.loansapp.di.module.LoansModule
 import com.example.loansapp.di.scope.FragmentScope
+import com.example.loansapp.ui.CreateLoanFragment
 import com.example.loansapp.ui.loans.LoansFragment
 import dagger.Subcomponent
 
@@ -15,4 +16,5 @@ interface LoansComponent {
     }
 
     fun inject(fragment: LoansFragment)
+    fun inject(fragment: CreateLoanFragment)
 }

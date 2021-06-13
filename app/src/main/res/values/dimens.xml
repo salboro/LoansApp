@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="enter_screen_horizontal_padding_margin">24dp</dimen>
+    <dimen name="create_screen_horizontal_padding_margin">24dp</dimen>
 </resources>

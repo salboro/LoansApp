@@ -22,4 +22,9 @@
     <string name="max_amount_template">Max %d rub</string>
     <string name="amount_template">Amount: %.2f rub</string>
     <string name="state_template">State: %s</string>
+    <string name="last_name">Last name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="choose_amount">Choose amount</string>
+    <string name="create_loan">Create loan</string>
+    <string name="conditions_template">With %.2f%% and %d months</string>
 </resources>
