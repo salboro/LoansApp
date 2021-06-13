@@ -9,11 +9,6 @@ data class RegistrationRequest(
 )
 
 @JsonClass(generateAdapter = true)
-data class GetLoansRequest(
-    val loans: List<Loan>
-)
-
-@JsonClass(generateAdapter = true)
 data class Loan(
     val id: Int,
     val firstName: String,

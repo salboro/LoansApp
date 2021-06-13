@@ -13,7 +13,7 @@
         android:background="?backgroundColor"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".ui.enter.EnterFragment">
+        tools:context=".ui.authorization.EnterFragment">
 
         <ImageView
             android:id="@+id/titleIconImage"

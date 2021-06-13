@@ -1,10 +1,12 @@
 package com.example.loansapp.data.datasource
 
+import android.util.Log
 import com.example.loansapp.data.ErrorHandlerImpl
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.data.network.LoansApiService
 import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.data.network.RegistrationRequest
+import com.example.loansapp.domain.entity.NewLoan
 import com.example.loansapp.domain.entity.ResultType
 import io.reactivex.Single
 import okhttp3.MediaType
@@ -18,7 +20,8 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun login(name: String, password: String): Single<ResultType<String>> {
         val mediaType = MediaType.parse("application/json")
         val headers = mapOf("accept" to "*/*", "Content-type" to "application/json")
-        val body = RequestBody.create(mediaType, createBodyContentString(name, password))
+        val body =
+            RequestBody.create(mediaType, createAuthorizationBodyContentString(name, password))
         val response = apiService.login(headers, body)
 
         //Return beaver authorisation token or error entity
@@ -34,7 +37,8 @@ class RemoteDataSourceImpl @Inject constructor(
     override fun register(name: String, password: String): Single<ResultType<RegistrationRequest>> {
         val mediaType = MediaType.parse("application/json")
         val headers = mapOf("accept" to "*/*", "Content-type" to "application/json")
-        val body = RequestBody.create(mediaType, createBodyContentString(name, password))
+        val body =
+            RequestBody.create(mediaType, createAuthorizationBodyContentString(name, password))
         val response = apiService.registration(headers, body)
 
         //Return registerRequest or error entity
@@ -77,6 +81,46 @@ class RemoteDataSourceImpl @Inject constructor(
         }
     }
 
-    private fun createBodyContentString(name: String, password: String) =
+
+    override fun createLoan(
+        newLoan: NewLoan,
+        authorizationToken: String
+    ): Single<ResultType<Loan>> {
+        val mediaType = MediaType.parse("application/json")
+        val headers = mapOf(
+            "accept" to "*/*",
+            "Content-type" to "application/json",
+            "authorization" to authorizationToken
+        )
+        val body =
+            RequestBody.create(
+                mediaType,
+                createLoanCreationBodyContentString(newLoan)
+            )
+
+        val response = apiService.createLoan(headers, body)
+
+
+        return response.map {
+            if (it.isSuccessful) {
+                Log.i("create", "suc")
+                ResultType.Success(it.body()!!)
+            } else {
+                ResultType.Error(ErrorHandlerImpl().getError(it.code()))
+            }
+        }
+    }
+
+    private fun createAuthorizationBodyContentString(name: String, password: String) =
         "{ \"name\": \"$name\", \"password\": \"$password\"}"
+
+    private fun createLoanCreationBodyContentString(
+        newLoan: NewLoan
+    ) = "{ \"amount\": ${newLoan.amount}," +
+            " \"firstName\": \"${newLoan.firstName}\"," +
+            " \"lastName\": \"${newLoan.lastName}\"," +
+            " \"percent\": ${newLoan.percent}," +
+            " \"period\": ${newLoan.period}," +
+            " \"phoneNumber\": \"${newLoan.phoneNumber}\"}"
+
 }

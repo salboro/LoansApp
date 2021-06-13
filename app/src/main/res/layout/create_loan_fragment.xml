@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.CreateLoanFragment">
+    tools:context=".ui.createloan.CreateLoanFragment">
 
     <ImageView
         android:id="@+id/backArrowImage"
@@ -97,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:inputType="text" />
+                    android:inputType="numberDecimal" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,8 +136,39 @@
                 android:textColor="?colorOnBackground"
                 tools:text="With 5% and 45 months" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/createLoanErrorCard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/enter_screen_horizontal_padding_margin"
+                android:alpha="0"
+                android:visibility="gone"
+                app:cardBackgroundColor="?colorError"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/createLoanErrorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textAlignment="center"
+                    android:textColor="?colorOnError"
+                    tools:text="Something went wrong" />
+            </androidx.cardview.widget.CardView>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:visibility="gone" />
+
             <Button
-                android:id="@+id/button"
+                android:id="@+id/createLoanButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/create_screen_horizontal_padding_margin"

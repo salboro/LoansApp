@@ -16,8 +16,8 @@ import com.example.loansapp.databinding.LoansFragmentBinding
 import com.example.loansapp.presentation.loans.LoansConditionsViewState
 import com.example.loansapp.presentation.loans.LoansViewModel
 import com.example.loansapp.presentation.loans.LoansViewState
-import com.example.loansapp.ui.CreateLoanFragment
 import com.example.loansapp.ui.OnSwipeTouchListener
+import com.example.loansapp.ui.createloan.CreateLoanFragment
 import com.example.loansapp.utils.anim.disappearInLeftComeFromRight
 import com.example.loansapp.utils.anim.disappearInRightComeFromLeft
 import com.example.loansapp.utils.anim.yScaleInAndFadeIn
@@ -73,6 +73,7 @@ class LoansFragment : Fragment() {
                 }
 
                 is LoansConditionsViewState.Loading -> {
+
                     binding.creatLoanProgressBar.isVisible = true
                 }
             }

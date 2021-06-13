@@ -1,5 +1,6 @@
 package com.example.loansapp.data
 
+import android.util.Log
 import com.example.loansapp.domain.ErrorHandler
 import com.example.loansapp.domain.entity.ErrorType
 
@@ -13,6 +14,7 @@ class ErrorHandlerImpl : ErrorHandler {
     }
 
     override fun getError(code: Int): ErrorType {
+        Log.i("error", code.toString())
         return when (code) {
             UNSATISFIABLE_RESPONSE_CODE -> ErrorType.Network
 

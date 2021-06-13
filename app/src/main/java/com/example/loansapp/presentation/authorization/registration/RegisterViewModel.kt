@@ -1,4 +1,4 @@
-package com.example.loansapp.presentation.enter.registration
+package com.example.loansapp.presentation.authorization.registration
 
 import android.util.Log
 import androidx.lifecycle.LiveData

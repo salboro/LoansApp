@@ -39,4 +39,10 @@ interface LoansApiService {
         @HeaderMap headers: Map<String, String>
     ): Single<Response<LoansConditions>>
 
+    @POST("loans")
+    @MoshiConverter
+    fun createLoan(
+        @HeaderMap headers: Map<String, String>,
+        @Body requestBody: RequestBody
+    ): Single<Response<Loan>>
 }

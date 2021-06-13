@@ -1,4 +1,4 @@
-package com.example.loansapp.ui.enter
+package com.example.loansapp.ui.authorization
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,8 @@ import com.example.loansapp.MyApplication
 import com.example.loansapp.R
 import com.example.loansapp.databinding.RegisterFragmentBinding
 import com.example.loansapp.domain.entity.ErrorType
-import com.example.loansapp.presentation.enter.registration.RegisterViewModel
-import com.example.loansapp.presentation.enter.registration.RegistrationViewState
+import com.example.loansapp.presentation.authorization.registration.RegisterViewModel
+import com.example.loansapp.presentation.authorization.registration.RegistrationViewState
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView
 import com.example.loansapp.utils.anim.shake

@@ -2,7 +2,7 @@ package com.example.loansapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.loansapp.ui.enter.EnterFragment
+import com.example.loansapp.ui.authorization.EnterFragment
 
 class MainActivity : AppCompatActivity() {
 

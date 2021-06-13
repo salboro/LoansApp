@@ -2,8 +2,8 @@ package com.example.loansapp.di.subcomponent
 
 import com.example.loansapp.di.module.AuthorizationModule
 import com.example.loansapp.di.scope.FragmentScope
-import com.example.loansapp.ui.enter.LoginFragment
-import com.example.loansapp.ui.enter.RegistrationFragment
+import com.example.loansapp.ui.authorization.LoginFragment
+import com.example.loansapp.ui.authorization.RegistrationFragment
 import dagger.Subcomponent
 
 @FragmentScope

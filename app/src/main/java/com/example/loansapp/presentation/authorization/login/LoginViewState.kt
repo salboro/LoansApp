@@ -1,4 +1,4 @@
-package com.example.loansapp.presentation.enter.login
+package com.example.loansapp.presentation.authorization.login
 
 import com.example.loansapp.domain.entity.ErrorType
 

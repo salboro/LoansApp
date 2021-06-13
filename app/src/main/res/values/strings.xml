@@ -27,4 +27,12 @@
     <string name="choose_amount">Choose amount</string>
     <string name="create_loan">Create loan</string>
     <string name="conditions_template">With %.2f%% and %d months</string>
+    <string name="accept_loan_creation_information_template">Your name: %s \nYour last name: %s \nYour phone number: %s \nAmount: %d \nPercent: %.2f \nPeriod: %d</string>
+    <string name="loan_created_information_template">Loan number: %d \nYour name: %s \nYour last name: %s \nYour phone number: %s \nAmount: %d \nPercent: %.2f \nPeriod: %d \nDate of loan creation: %s \nLoan state: %s</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="your_loan_created">Your loan created!</string>
+    <string name="excellent">Excellent!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="name_or_last_name_or_phone_number_is_invalid">Name or last name or phone number is invalid</string>
 </resources>

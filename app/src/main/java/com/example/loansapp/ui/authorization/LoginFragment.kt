@@ -1,4 +1,4 @@
-package com.example.loansapp.ui.enter
+package com.example.loansapp.ui.authorization
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,8 @@ import com.example.loansapp.MyApplication
 import com.example.loansapp.R
 import com.example.loansapp.databinding.LoginFragmentBinding
 import com.example.loansapp.domain.entity.ErrorType
-import com.example.loansapp.presentation.enter.login.LoginViewModel
-import com.example.loansapp.presentation.enter.login.LoginViewState
+import com.example.loansapp.presentation.authorization.login.LoginViewModel
+import com.example.loansapp.presentation.authorization.login.LoginViewState
 import com.example.loansapp.ui.loans.LoansFragment
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView

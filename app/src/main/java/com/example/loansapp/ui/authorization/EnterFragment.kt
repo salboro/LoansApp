@@ -1,4 +1,4 @@
-package com.example.loansapp.ui.enter
+package com.example.loansapp.ui.authorization
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -11,5 +11,5 @@ class GetLoansConditionsUseCase @Inject constructor(
 ) {
 
     operator fun invoke(): Single<ResultType<LoansConditions>> =
-        loansRepository.getLoansConditions()
+        loansRepository.getConditions()
 }
