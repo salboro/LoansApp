@@ -35,4 +35,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="name_or_last_name_or_phone_number_is_invalid">Name or last name or phone number is invalid</string>
+    <string name="i_see">I see</string>
+    <string name="loan">Loan</string>
+    <string name="you_do_not_have_any_loans_yet">You do not have any loans yet</string>
 </resources>

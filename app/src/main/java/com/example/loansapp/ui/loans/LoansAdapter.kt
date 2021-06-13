@@ -18,7 +18,7 @@ class LoansAdapter(private val onClick: (Loan) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoanViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = LoanItemBinding.inflate(layoutInflater, parent, false)
-        return LoanViewHolder(binding, parent.context)
+        return LoanViewHolder(binding, parent.context, onClick)
     }
 
     override fun onBindViewHolder(holder: LoanViewHolder, position: Int) {
@@ -36,7 +36,8 @@ class LoansAdapter(private val onClick: (Loan) -> Unit) :
 
 class LoanViewHolder(
     private val binding: LoanItemBinding,
-    private val context: Context
+    private val context: Context,
+    private val onClick: (Loan) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("ResourceType")
@@ -44,13 +45,15 @@ class LoanViewHolder(
         binding.amountText.text = context.resources.getString(R.string.amount_template, loan.amount)
         binding.stateText.text = context.resources.getString(R.string.state_template, loan.state)
 
+        binding.root.setOnClickListener {
+            onClick(loan)
+        }
+
 
         if (layoutPosition.isEven()) {
             binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimaryVariant))
         } else {
             binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimary))
         }
-
-
     }
 }

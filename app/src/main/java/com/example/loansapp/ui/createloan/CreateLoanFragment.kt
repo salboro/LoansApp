@@ -123,6 +123,25 @@ class CreateLoanFragment : Fragment() {
         }
     }
 
+    private fun setViewProperties() {
+        binding.amountSlider.valueFrom = 1.0f
+        binding.amountSlider.valueTo = maxAmount.toFloat()
+        binding.amountSlider.value = maxAmount / 2.toFloat()
+
+        binding.maxAmountText.text = resources.getString(R.string.max_amount_template, maxAmount)
+
+        binding.conditionsText.text =
+            resources.getString(R.string.conditions_template, percent, period)
+
+        binding.backArrowImage.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+        binding.createLoanButton.setOnClickListener {
+            createAcceptDialog()
+        }
+    }
+
     private fun createLoanInformationDialog(loan: Loan) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(resources.getString(R.string.your_loan_created))
@@ -147,25 +166,6 @@ class CreateLoanFragment : Fragment() {
                 requireActivity().onBackPressed()
             }
             .show()
-    }
-
-    private fun setViewProperties() {
-        binding.amountSlider.valueFrom = 1.0f
-        binding.amountSlider.valueTo = maxAmount.toFloat()
-        binding.amountSlider.value = maxAmount / 2.toFloat()
-
-        binding.maxAmountText.text = resources.getString(R.string.max_amount_template, maxAmount)
-
-        binding.conditionsText.text =
-            resources.getString(R.string.conditions_template, percent, period)
-
-        binding.backArrowImage.setOnClickListener {
-            requireActivity().onBackPressed()
-        }
-
-        binding.createLoanButton.setOnClickListener {
-            createAcceptDialog()
-        }
     }
 
     private fun createAcceptDialog() {

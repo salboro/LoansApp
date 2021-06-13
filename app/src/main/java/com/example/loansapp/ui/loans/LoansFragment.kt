@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ import com.example.loansapp.utils.anim.disappearInLeftComeFromRight
 import com.example.loansapp.utils.anim.disappearInRightComeFromLeft
 import com.example.loansapp.utils.anim.yScaleInAndFadeIn
 import com.example.loansapp.utils.anim.yScaleOutAndFadeOut
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
 
@@ -59,7 +61,8 @@ class LoansFragment : Fragment() {
         viewModel.loansConditionsState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is LoansConditionsViewState.Success -> {
-                    binding.creatLoanProgressBar.isVisible = false
+                    binding.conditionsLayout.isVisible = true
+                    binding.loansConditionsProgressBar.isVisible = false
                     binding.percentText.text = resources.getString(
                         R.string.percent_template,
                         state.loansConditions.percent
@@ -73,8 +76,8 @@ class LoansFragment : Fragment() {
                 }
 
                 is LoansConditionsViewState.Loading -> {
-
-                    binding.creatLoanProgressBar.isVisible = true
+                    binding.conditionsLayout.isInvisible = true
+                    binding.loansConditionsProgressBar.isVisible = true
                 }
             }
         }
@@ -82,11 +85,19 @@ class LoansFragment : Fragment() {
         viewModel.loansState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is LoansViewState.Success -> {
+                    if (state.loans.isEmpty()) {
+                        binding.onEmptyListCard.isVisible = true
+                        binding.loansList.isVisible = false
+                    } else {
+                        binding.onEmptyListCard.isVisible = false
+                        binding.loansList.isVisible = true
+                    }
                     binding.loansListProgressBar.isVisible = false
                     adapter.submitList(state.loans)
                 }
 
                 is LoansViewState.Loading -> {
+                    binding.loansList.isInvisible = true
                     binding.loansListProgressBar.isVisible = true
                 }
             }
@@ -129,14 +140,15 @@ class LoansFragment : Fragment() {
 
     private fun setRecyclerViewScrollListener() {
         var y = 0
+
         binding.loansList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (RecyclerView.SCROLL_STATE_SETTLING == newState) {
-                    if (y >= 0) {
+                    if (y >= 1) {
                         binding.loansConditionsCard.yScaleOutAndFadeOut(300L)
-                    } else {
                         y = 0
+                    } else if (recyclerView.layoutManager?.findViewByPosition(0) != null) {
                         binding.loansConditionsCard.yScaleInAndFadeIn(300L)
                     }
                 }
@@ -149,6 +161,26 @@ class LoansFragment : Fragment() {
     }
 
     private fun onLoanClick(loan: Loan) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.loan))
+            .setMessage(
+                resources.getString(
+                    R.string.loan_created_information_template,
+                    loan.id,
+                    loan.firstName,
+                    loan.lastName,
+                    loan.phoneNumber,
+                    loan.amount.toInt(),
+                    loan.percent,
+                    loan.period,
+                    loan.date,
+                    loan.state
+                )
+            )
+            .setPositiveButton(resources.getString(R.string.i_see)) { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
     }
 
     override fun onAttach(context: Context) {
