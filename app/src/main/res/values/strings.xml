@@ -5,8 +5,8 @@
     <string name="password">Password</string>
     <string name="do_you_accept_something">Do you accept something?</string>
     <string name="you_don_t_have_account_yet_go_to_register_page">You don\'t have account yet? Go to Register page!</string>
-    <string name="you_already_have_account_go_to_login_page">You already have account? Go to login page!</string>
-    <string name="title_app_icon">Title app icon</string>
+    <string name="you_already_have_account_go_to_login_page">You already have account? Go to Login page!</string>
+    <string name="title_app_icon" translatable="false">Title app icon</string>
     <string name="name">Name</string>
     <string name="you_entered_your_username_or_password_incorrectly">You entered your username or password incorrectly</string>
     <string name="something_went_wrong_try_later">Something went wrong. Try later</string>
@@ -16,8 +16,8 @@
     <string name="user_with_the_same_data_already_exist">User with the same data already exist</string>
     <string name="your_loans">Your loans</string>
     <string name="loan_conditions_for_you">Loan conditions for you</string>
-    <string name="if_you_accept_with_it_just_click">If you accept with it, just click!</string>
-    <string name="percent_template">%.2f %%</string>
+    <string name="if_you_accept_with_it_just_click" translatable="false">If you accept with it, just click!</string>
+    <string name="percent_template" translatable="false">%.2f %%</string>
     <string name="period_template">%d months</string>
     <string name="max_amount_template">Max %d rub</string>
     <string name="amount_template">Amount: %.0f rub</string>
@@ -46,8 +46,7 @@
     <string name="loan_state_unknown">State: unknown</string>
     <string name="just_click_to_get">Just click to get!</string>
     <string name="just_click_to_get_or_swipe_to_get_next">Just click to get or swipe to get next!</string>
-    <string name="refresh_data">refresh data</string>
+    <string name="refresh_data" translatable="false">refresh data</string>
     <string name="logout">Logout</string>
     <string name="change_theme">Change theme</string>
-    <string name="change_language">Change language</string>
 </resources>

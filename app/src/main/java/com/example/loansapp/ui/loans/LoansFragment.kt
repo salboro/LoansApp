@@ -72,9 +72,13 @@ class LoansFragment : Fragment() {
 
         setRecyclerViewScrollListener()
         handleToolbarMenuActions()
-        loadLoansData()
 
         return binding.root
+    }
+
+    override fun onResume() {
+        loadLoansData()
+        super.onResume()
     }
 
     private fun loadLoansData() {
