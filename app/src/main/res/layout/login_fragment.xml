@@ -41,6 +41,7 @@
                 android:layout_marginBottom="36dp"
                 android:paddingHorizontal="@dimen/enter_screen_horizontal_padding_margin"
                 android:hint="@string/password"
+                app:endIconMode="password_toggle"
                 app:startIconContentDescription="@string/password"
                 app:startIconDrawable="@drawable/ic_baseline_password_24">
 
@@ -85,6 +86,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/loginButton"
+                style="@style/simpleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/enter_screen_horizontal_padding_margin"

@@ -4,4 +4,13 @@
     <style name="textOnBackground">
         <item name="android:textColor">?colorOnBackground</item>
     </style>
+
+    <style name="titleText">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="fontFamily">@font/lato_bold</item>
+    </style>
+
+    <style name="simpleButton" parent="Widget.AppCompat.Button">
+        <item name="fontFamily">@font/lato_bold</item>
+    </style>
 </resources>

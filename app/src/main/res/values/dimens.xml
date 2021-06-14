@@ -2,4 +2,5 @@
 <resources>
     <dimen name="enter_screen_horizontal_padding_margin">24dp</dimen>
     <dimen name="create_screen_horizontal_padding_margin">24dp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
 </resources>

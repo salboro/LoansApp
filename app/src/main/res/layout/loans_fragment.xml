@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?colorPrimary"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -35,10 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginVertical="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:visibility="visible"
             app:cardBackgroundColor="?colorSurface"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
@@ -47,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.00999999">
+            app:layout_constraintVertical_bias="0.0">
 
             <ProgressBar
                 android:id="@+id/loansConditionsProgressBar"
@@ -59,10 +57,19 @@
                 android:layout_marginBottom="0dp"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/conditionsErrorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="?colorOnError"
+                android:visibility="gone" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/conditionsLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
                 android:orientation="vertical"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="8dp"
@@ -70,13 +77,15 @@
 
                 <TextView
                     android:id="@+id/loansConditionsTitleText"
+                    style="@style/titleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/loan_condition_for_you"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/loan_conditions_for_you"
                     android:textColor="?colorOnSurface"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/percentText"
+                    app:layout_constraintBottom_toTopOf="@+id/percentImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -86,41 +95,90 @@
                     android:id="@+id/percentText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:textColor="?colorOnSurface"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/periodText"
+                    app:layout_constraintBottom_toBottomOf="@+id/percentImage"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loansConditionsTitleText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/percentImage"
+                    app:layout_constraintTop_toTopOf="@+id/percentImage"
                     tools:text="12%" />
 
                 <TextView
                     android:id="@+id/periodText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
                     android:textColor="?colorOnSurface"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toTopOf="@+id/maxAmountText"
+                    app:layout_constraintBottom_toBottomOf="@id/calendarImage"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/percentText"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/calendarImage"
+                    app:layout_constraintTop_toTopOf="@id/calendarImage"
                     tools:text="45 months" />
 
                 <TextView
                     android:id="@+id/maxAmountText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:textColor="?colorOnSurface"
                     android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/moneyImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/moneyImage"
+                    app:layout_constraintTop_toTopOf="@id/moneyImage"
+                    tools:text="Max 15555" />
+
+                <ImageView
+                    android:id="@+id/percentImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_percent_24"
+                    app:layout_constraintBottom_toTopOf="@+id/calendarImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/loansConditionsTitleText" />
+
+                <ImageView
+                    android:id="@+id/calendarImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:src="@drawable/ic_baseline_calendar_today_24"
+                    app:layout_constraintBottom_toTopOf="@+id/moneyImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/percentImage" />
+
+                <ImageView
+                    android:id="@+id/moneyImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_baseline_attach_money_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calendarImage"
+                    app:layout_constraintBottom_toTopOf="@id/conditionsBottomText" />
+
+                <TextView
+                    android:id="@+id/conditionsBottomText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/just_click_to_get_or_swipe_to_get_next"
+                    style="@style/titleText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/periodText"
-                    tools:text="Max 15555" />
+                    app:layout_constraintTop_toBottomOf="@+id/moneyImage" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -129,7 +187,8 @@
             android:id="@+id/loansList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:background="?colorSurface"
+            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,13 +214,13 @@
             android:layout_margin="16dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/loansConditionsCard">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/onEmptyListText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -170,6 +229,43 @@
                 android:textColor="?colorOnBackground"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/onErrorListCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="?colorError"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loansConditionsCard">
+
+            <TextView
+                android:id="@+id/onErrorListText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:textColor="?colorOnError"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_baseline_arrow_upward_24"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,7 +43,7 @@ class LoansViewModel @Inject constructor(
 
             _loansConditionsState.postValue(
                 LoansConditionsViewState.Error(
-                    ErrorType.Network
+                    ErrorType.Connection
                 )
             )
         }).untilDestroy()
@@ -71,7 +71,7 @@ class LoansViewModel @Inject constructor(
 
             _loansState.postValue(
                 LoansViewState.Error(
-                    ErrorType.Network
+                    ErrorType.Connection
                 )
             )
         }).untilDestroy()

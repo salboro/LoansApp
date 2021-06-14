@@ -15,12 +15,12 @@
     <string name="you_successfully_registered_now_you_might_try_login_with_your_data">You successfully registered! Now you might try login with your data :)</string>
     <string name="user_with_the_same_data_already_exist">User with the same data already exist</string>
     <string name="your_loans">Your loans</string>
-    <string name="loan_condition_for_you">Loan condition for you</string>
+    <string name="loan_conditions_for_you">Loan conditions for you</string>
     <string name="if_you_accept_with_it_just_click">If you accept with it, just click!</string>
     <string name="percent_template">%.2f %%</string>
     <string name="period_template">%d months</string>
     <string name="max_amount_template">Max %d rub</string>
-    <string name="amount_template">Amount: %.2f rub</string>
+    <string name="amount_template">Amount: %.0f rub</string>
     <string name="state_template">State: %s</string>
     <string name="last_name">Last name</string>
     <string name="phone_number">Phone number</string>
@@ -38,4 +38,12 @@
     <string name="i_see">I see</string>
     <string name="loan">Loan</string>
     <string name="you_do_not_have_any_loans_yet">You do not have any loans yet</string>
+    <string name="this_loan_is_unavailable_try_another">This loan is unavailable. Try another</string>
+    <string name="trouble_with_authentication_try_to_reenter">Trouble with authentication. Try to reenter</string>
+    <string name="loan_state_registered">State: registered</string>
+    <string name="loan_state_approved">State: approved</string>
+    <string name="loan_state_rejected">State: rejected</string>
+    <string name="loan_state_unknown">State: unknown</string>
+    <string name="just_click_to_get">Just click to get!</string>
+    <string name="just_click_to_get_or_swipe_to_get_next">Just click to get or swipe to get next!</string>
 </resources>

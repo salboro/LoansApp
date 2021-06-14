@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.LoansApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green_500</item>
-        <item name="colorPrimaryVariant">@color/green_200</item>
-        <item name="colorPrimaryDark">@color/green_700</item>
+        <item name="colorPrimary">@color/light_teal_500</item>
+        <item name="colorPrimaryVariant">@color/light_teal_300</item>
+        <item name="colorPrimaryDark">@color/teal_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/indigo_a300</item>
@@ -16,9 +16,11 @@
         <item name="backgroundColor">@color/white</item>
         <item name="colorOnBackground">@color/black</item>
         <item name="colorError">@color/red_800</item>
+        <item name="fontFamily">@font/lato</item>
         <item name="colorOnError">@color/white</item>
-        <item name="fontFamily">@font/quando</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">@color/black</item>
+        <item name="colorPrimarySurface">#EFEFEF</item>
+        <item name="android:textColor">?colorOnSurface</item>
     </style>
 </resources>
