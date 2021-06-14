@@ -17,6 +17,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_baseline_arrow_back_24"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,9 +41,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
+                style="@style/titleText"
                 android:text="@string/create_loan"
-                android:textColor="?colorOnBackground"
-                android:textSize="18sp" />
+                android:textColor="?colorOnBackground" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameField"
@@ -90,13 +91,13 @@
                 android:hint="@string/phone_number"
                 android:paddingHorizontal="@dimen/create_screen_horizontal_padding_margin"
                 app:startIconContentDescription="@string/phone_number"
-                app:startIconDrawable="@drawable/ic_baseline_person_24">
+                app:startIconDrawable="@drawable/ic_baseline_local_phone_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phoneNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="16dp"
                     android:inputType="numberDecimal" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -118,10 +119,10 @@
                 android:minHeight="50dp" />
 
             <TextView
-                android:id="@+id/maxAmountText"
+                android:id="@+id/amountText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:textColor="?colorOnBackground"
                 android:textSize="18sp"
@@ -156,6 +157,7 @@
                     android:paddingVertical="8dp"
                     android:textAlignment="center"
                     android:textColor="?colorOnError"
+                    android:text="@string/this_loan_is_unavailable_try_another"
                     tools:text="Something went wrong" />
             </androidx.cardview.widget.CardView>
 
@@ -169,6 +171,7 @@
 
             <Button
                 android:id="@+id/createLoanButton"
+                style="@style/simpleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/create_screen_horizontal_padding_margin"

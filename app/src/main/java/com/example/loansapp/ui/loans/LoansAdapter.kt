@@ -11,6 +11,7 @@ import com.example.loansapp.R
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.databinding.LoanItemBinding
 import com.example.loansapp.utils.getColor
+import com.example.loansapp.utils.getResourcesLoanState
 import com.example.loansapp.utils.isEven
 
 class LoansAdapter(private val onClick: (Loan) -> Unit) :
@@ -42,18 +43,19 @@ class LoanViewHolder(
 
     @SuppressLint("ResourceType")
     fun bind(loan: Loan) {
-        binding.amountText.text = context.resources.getString(R.string.amount_template, loan.amount)
-        binding.stateText.text = context.resources.getString(R.string.state_template, loan.state)
+        binding.loanItemAmountText.text =
+            context.resources.getString(R.string.amount_template, loan.amount)
+        binding.stateText.text = loan.state.getResourcesLoanState(context)
+        binding.itemPositionText.text = layoutPosition.plus(1).toString()
 
         binding.root.setOnClickListener {
             onClick(loan)
         }
 
-
         if (layoutPosition.isEven()) {
-            binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimaryVariant))
+            binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimarySurface))
         } else {
-            binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorPrimary))
+            binding.root.setCardBackgroundColor(context.theme.getColor(R.attr.colorSurface))
         }
     }
 }

@@ -18,6 +18,7 @@ import com.example.loansapp.presentation.createloan.CreateLoanViewState
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView
 import com.example.loansapp.utils.anim.shake
+import com.example.loansapp.utils.getResourcesLoanState
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -43,7 +44,7 @@ class CreateLoanFragment : Fragment() {
     @Inject
     lateinit var viewModel: CreateLoanViewModel
 
-    lateinit var binding: CreateLoanFragmentBinding
+    private lateinit var binding: CreateLoanFragmentBinding
 
     private var percent by Delegates.notNull<Double>()
     private var period by Delegates.notNull<Int>()
@@ -76,6 +77,10 @@ class CreateLoanFragment : Fragment() {
         when (state) {
             is CreateLoanViewState.Loading -> {
                 binding.createLoanButton.fadeReplaceWithView(binding.progressBar)
+
+                binding.lastNameField.isErrorEnabled = false
+                binding.nameField.isErrorEnabled = false
+                binding.phoneNumberField.isErrorEnabled = false
             }
 
             is CreateLoanViewState.Success -> {
@@ -118,6 +123,13 @@ class CreateLoanFragment : Fragment() {
                     resources.getString(R.string.name_or_last_name_or_phone_number_is_invalid)
             }
 
+            is ErrorType.Network -> {
+                binding.createLoanButton.isEnabled = false
+
+                binding.createLoanErrorText.text =
+                    resources.getString(R.string.this_loan_is_unavailable_try_another)
+            }
+
             else -> binding.createLoanErrorText.text =
                 resources.getString(R.string.something_went_wrong_try_later)
         }
@@ -128,7 +140,11 @@ class CreateLoanFragment : Fragment() {
         binding.amountSlider.valueTo = maxAmount.toFloat()
         binding.amountSlider.value = maxAmount / 2.toFloat()
 
-        binding.maxAmountText.text = resources.getString(R.string.max_amount_template, maxAmount)
+        binding.amountSlider.addOnChangeListener { _, value, _ ->
+            binding.amountText.text = resources.getString(R.string.amount_template, value)
+        }
+
+        binding.amountText.text = resources.getString(R.string.max_amount_template, maxAmount)
 
         binding.conditionsText.text =
             resources.getString(R.string.conditions_template, percent, period)
@@ -156,7 +172,7 @@ class CreateLoanFragment : Fragment() {
                     loan.percent,
                     loan.period,
                     loan.date,
-                    loan.state
+                    loan.state.getResourcesLoanState(requireContext())
                 )
             )
             .setPositiveButton(resources.getString(R.string.excellent)) { dialog, _ ->

@@ -14,6 +14,7 @@ import com.example.loansapp.MyApplication
 import com.example.loansapp.R
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.databinding.LoansFragmentBinding
+import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.presentation.loans.LoansConditionsViewState
 import com.example.loansapp.presentation.loans.LoansViewModel
 import com.example.loansapp.presentation.loans.LoansViewState
@@ -23,6 +24,8 @@ import com.example.loansapp.utils.anim.disappearInLeftComeFromRight
 import com.example.loansapp.utils.anim.disappearInRightComeFromLeft
 import com.example.loansapp.utils.anim.yScaleInAndFadeIn
 import com.example.loansapp.utils.anim.yScaleOutAndFadeOut
+import com.example.loansapp.utils.getColor
+import com.example.loansapp.utils.getResourcesLoanState
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import javax.inject.Inject
 
@@ -46,8 +49,8 @@ class LoansFragment : Fragment() {
         binding = LoansFragmentBinding.inflate(layoutInflater, container, false)
 
         val adapter = LoansAdapter(::onLoanClick)
-
         binding.loansList.adapter = adapter
+
         binding.loansConditionsCard.setOnTouchListener(
             OnSwipeTouchListener(
                 requireContext(),
@@ -57,57 +60,109 @@ class LoansFragment : Fragment() {
             )
         )
 
-
         viewModel.loansConditionsState.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is LoansConditionsViewState.Success -> {
-                    binding.conditionsLayout.isVisible = true
-                    binding.loansConditionsProgressBar.isVisible = false
-                    binding.percentText.text = resources.getString(
-                        R.string.percent_template,
-                        state.loansConditions.percent
-                    )
-                    binding.periodText.text =
-                        resources.getString(R.string.period_template, state.loansConditions.period)
-                    binding.maxAmountText.text = resources.getString(
-                        R.string.max_amount_template,
-                        state.loansConditions.maxAmount
-                    )
-                }
-
-                is LoansConditionsViewState.Loading -> {
-                    binding.conditionsLayout.isInvisible = true
-                    binding.loansConditionsProgressBar.isVisible = true
-                }
-            }
+            renderConditionsState(state)
         }
 
         viewModel.loansState.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                is LoansViewState.Success -> {
-                    if (state.loans.isEmpty()) {
-                        binding.onEmptyListCard.isVisible = true
-                        binding.loansList.isVisible = false
-                    } else {
-                        binding.onEmptyListCard.isVisible = false
-                        binding.loansList.isVisible = true
-                    }
-                    binding.loansListProgressBar.isVisible = false
-                    adapter.submitList(state.loans)
-                }
-
-                is LoansViewState.Loading -> {
-                    binding.loansList.isInvisible = true
-                    binding.loansListProgressBar.isVisible = true
-                }
-            }
+            renderLoansState(state, adapter)
         }
 
-        setRecyclerViewScrollListener()
         viewModel.getLoans()
         viewModel.getLoansConditions()
+        setRecyclerViewScrollListener()
 
         return binding.root
+    }
+
+    private fun renderLoansState(state: LoansViewState?, adapter: LoansAdapter) {
+        when (state) {
+            is LoansViewState.Success -> {
+                if (state.loans.isEmpty()) {
+                    binding.onEmptyListCard.isVisible = true
+                    binding.loansList.isVisible = false
+                } else {
+                    binding.onEmptyListCard.isVisible = false
+                    binding.loansList.isVisible = true
+                }
+                binding.loansListProgressBar.isVisible = false
+                adapter.submitList(state.loans)
+            }
+
+            is LoansViewState.Error -> {
+                handleLoansError(state.reason)
+
+                binding.loansListProgressBar.isVisible = false
+                binding.onErrorListCard.isVisible = true
+            }
+
+            is LoansViewState.Loading -> {
+                binding.loansList.isInvisible = true
+                binding.loansListProgressBar.isVisible = true
+            }
+        }
+    }
+
+    private fun handleLoansError(reason: ErrorType) {
+        when (reason) {
+            ErrorType.Connection -> binding.onErrorListText.text =
+                resources.getString(R.string.check_your_internet_connection)
+
+            ErrorType.AccessDenied -> binding.onErrorListText.text =
+                resources.getString(R.string.trouble_with_authentication_try_to_reenter)
+
+            else -> binding.onErrorListText.text =
+                resources.getString(R.string.something_went_wrong_try_later)
+        }
+    }
+
+    private fun renderConditionsState(state: LoansConditionsViewState?) {
+        when (state) {
+            is LoansConditionsViewState.Success -> {
+                binding.loansConditionsCard.setCardBackgroundColor(requireContext().theme.getColor(R.attr.colorSurface))
+                binding.conditionsErrorText.isVisible = false
+                binding.conditionsLayout.isVisible = true
+                binding.loansConditionsProgressBar.isVisible = false
+                binding.percentText.text = resources.getString(
+                    R.string.percent_template,
+                    state.loansConditions.percent
+                )
+                binding.periodText.text =
+                    resources.getString(R.string.period_template, state.loansConditions.period)
+                binding.maxAmountText.text = resources.getString(
+                    R.string.max_amount_template,
+                    state.loansConditions.maxAmount
+                )
+            }
+
+            is LoansConditionsViewState.Error -> {
+                handleLoansConditionsError(state.reason)
+
+                binding.loansConditionsCard.setCardBackgroundColor(requireContext().theme.getColor(R.attr.colorError))
+                binding.loansConditionsProgressBar.isVisible = false
+                binding.conditionsErrorText.isVisible = true
+            }
+
+            is LoansConditionsViewState.Loading -> {
+                binding.conditionsErrorText.isVisible = false
+                binding.conditionsLayout.isInvisible = true
+                binding.loansConditionsProgressBar.isVisible = true
+            }
+        }
+    }
+
+    private fun handleLoansConditionsError(reason: ErrorType) {
+        when (reason) {
+            ErrorType.Connection -> binding.conditionsErrorText.text =
+                resources.getString(R.string.check_your_internet_connection)
+
+            ErrorType.AccessDenied -> binding.conditionsErrorText.text =
+                resources.getString(R.string.trouble_with_authentication_try_to_reenter)
+
+            else -> binding.conditionsErrorText.text =
+                resources.getString(R.string.something_went_wrong_try_later)
+        }
+
     }
 
     private fun loansConditionsOnLeftSwipe() {
@@ -144,12 +199,18 @@ class LoansFragment : Fragment() {
         binding.loansList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                binding.floatingActionButton.setOnClickListener {
+                    recyclerView.smoothScrollToPosition(0)
+                }
+
                 if (RecyclerView.SCROLL_STATE_SETTLING == newState) {
                     if (y >= 1) {
                         binding.loansConditionsCard.yScaleOutAndFadeOut(300L)
+                        binding.floatingActionButton.isVisible = true
                         y = 0
                     } else if (recyclerView.layoutManager?.findViewByPosition(0) != null) {
                         binding.loansConditionsCard.yScaleInAndFadeIn(300L)
+                        binding.floatingActionButton.isVisible = false
                     }
                 }
             }
@@ -174,7 +235,7 @@ class LoansFragment : Fragment() {
                     loan.percent,
                     loan.period,
                     loan.date,
-                    loan.state
+                    loan.state.getResourcesLoanState(requireContext())
                 )
             )
             .setPositiveButton(resources.getString(R.string.i_see)) { dialog, _ ->
