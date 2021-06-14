@@ -1,16 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="textOnBackground">
+    <style name="TextOnBackground">
         <item name="android:textColor">?colorOnBackground</item>
     </style>
 
-    <style name="titleText">
+    <style name="TitleText">
         <item name="android:textSize">@dimen/title_text_size</item>
         <item name="fontFamily">@font/lato_bold</item>
     </style>
 
-    <style name="simpleButton" parent="Widget.AppCompat.Button">
+    <style name="SimpleButton" parent="Widget.AppCompat.Button">
         <item name="fontFamily">@font/lato_bold</item>
     </style>
+
+    <style name="ToolbarLight" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">?colorPrimary</item>
+        <item name="titleTextColor">?colorOnPrimary</item>
+    </style>
+
+    <style name="ToolbarDark" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">?colorSurface</item>
+        <item name="titleTextColor">?colorOnSurface</item>
+    </style>
+
+    <style name="DarkOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?colorOnSurface</item>
+    </style>
+
+    <style name="LightOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">?colorOnPrimary</item>
+    </style>
+
 </resources>

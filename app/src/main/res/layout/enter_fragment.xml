@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?backgroundColor"
     android:overScrollMode="never"
     android:scrollbars="none">
 
@@ -33,6 +34,7 @@
             android:layout_gravity="start"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
+            android:background="?backgroundColor"
             app:tabGravity="start"
             app:tabMode="auto"
             app:tabPaddingEnd="12dp"

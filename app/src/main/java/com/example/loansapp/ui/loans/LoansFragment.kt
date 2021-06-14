@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -71,13 +72,9 @@ class LoansFragment : Fragment() {
 
         setRecyclerViewScrollListener()
         handleToolbarMenuActions()
+        loadLoansData()
 
         return binding.root
-    }
-
-    override fun onResume() {
-        loadLoansData()
-        super.onResume()
     }
 
     private fun loadLoansData() {
@@ -95,6 +92,8 @@ class LoansFragment : Fragment() {
                         .replace(R.id.container, EnterFragment.newInstance())
                         .commit()
                 }
+
+                R.id.action_change_theme -> changeTheme()
             }
             true
         }
@@ -190,6 +189,14 @@ class LoansFragment : Fragment() {
                 resources.getString(R.string.something_went_wrong_try_later)
         }
 
+    }
+
+    private fun changeTheme() {
+        if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun loansConditionsOnLeftSwipe() {

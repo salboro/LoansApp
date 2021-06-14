@@ -1,16 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.LoansApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+    <style name="Theme.LoansApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/light_teal_500</item>
+        <item name="colorPrimaryVariant">@color/light_teal_300</item>
+        <item name="colorPrimaryDark">@color/teal_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/indigo_a300</item>
+        <item name="colorSecondaryVariant">@color/indigo_a100</item>
+        <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="backgroundColor">@color/grey_900</item>
+        <item name="colorOnBackground">@color/white_a400</item>
+        <item name="colorError">@color/red_800</item>
+        <item name="fontFamily">@font/lato</item>
+        <item name="colorOnError">@color/white_a400</item>
+        <item name="colorSurface">@color/grey_800</item>
+        <item name="colorOnSurface">@color/white_a400</item>
+        <item name="colorPrimarySurface">@color/grey_700</item>
+        <item name="android:textColor">?colorOnSurface</item>
+        <item name="toolbarStyle">@style/ToolbarDark</item>
+        <item name="colorOnPrimarySurface">@color/white_a300</item>
+        <item name="iconTint">?colorOnSurface</item>
+        <item name="android:actionOverflowButtonStyle">@style/DarkOverflowButtonStyle</item>
     </style>
 </resources>

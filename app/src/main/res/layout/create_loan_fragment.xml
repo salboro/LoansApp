@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="?backgroundColor"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ui.createloan.CreateLoanFragment">
 
     <ImageView
@@ -16,8 +17,8 @@
         android:layout_gravity="top"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_baseline_arrow_back_24"
         android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,11 +38,11 @@
 
             <TextView
                 android:id="@+id/createLoanTitle"
+                style="@style/TitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:gravity="center"
-                style="@style/titleText"
                 android:text="@string/create_loan"
                 android:textColor="?colorOnBackground" />
 
@@ -60,7 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="?colorOnBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +81,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="?colorOnBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +101,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:textColor="?colorOnBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,9 +159,9 @@
                     android:layout_gravity="center"
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="8dp"
+                    android:text="@string/this_loan_is_unavailable_try_another"
                     android:textAlignment="center"
                     android:textColor="?colorOnError"
-                    android:text="@string/this_loan_is_unavailable_try_another"
                     tools:text="Something went wrong" />
             </androidx.cardview.widget.CardView>
 
@@ -171,7 +175,7 @@
 
             <Button
                 android:id="@+id/createLoanButton"
-                style="@style/simpleButton"
+                style="@style/SimpleButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/create_screen_horizontal_padding_margin"
