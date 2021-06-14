@@ -19,6 +19,7 @@ import com.example.loansapp.presentation.loans.LoansConditionsViewState
 import com.example.loansapp.presentation.loans.LoansViewModel
 import com.example.loansapp.presentation.loans.LoansViewState
 import com.example.loansapp.ui.OnSwipeTouchListener
+import com.example.loansapp.ui.authorization.EnterFragment
 import com.example.loansapp.ui.createloan.CreateLoanFragment
 import com.example.loansapp.utils.anim.disappearInLeftComeFromRight
 import com.example.loansapp.utils.anim.disappearInRightComeFromLeft
@@ -68,11 +69,35 @@ class LoansFragment : Fragment() {
             renderLoansState(state, adapter)
         }
 
-        viewModel.getLoans()
-        viewModel.getLoansConditions()
         setRecyclerViewScrollListener()
+        handleToolbarMenuActions()
 
         return binding.root
+    }
+
+    override fun onResume() {
+        loadLoansData()
+        super.onResume()
+    }
+
+    private fun loadLoansData() {
+        viewModel.getLoans()
+        viewModel.getLoansConditions()
+    }
+
+    private fun handleToolbarMenuActions() {
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_refresh -> loadLoansData()
+
+                R.id.action_logout -> {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, EnterFragment.newInstance())
+                        .commit()
+                }
+            }
+            true
+        }
     }
 
     private fun renderLoansState(state: LoansViewState?, adapter: LoansAdapter) {
@@ -85,6 +110,8 @@ class LoansFragment : Fragment() {
                     binding.onEmptyListCard.isVisible = false
                     binding.loansList.isVisible = true
                 }
+
+                binding.onErrorListCard.isVisible = false
                 binding.loansListProgressBar.isVisible = false
                 adapter.submitList(state.loans)
             }

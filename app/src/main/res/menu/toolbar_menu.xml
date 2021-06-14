@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/refresh_data"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_change_theme"
+        android:title="@string/change_theme"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_change_language"
+        android:title="@string/change_language"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/logout"
+        app:showAsAction="never" />
+</menu>

@@ -46,4 +46,8 @@
     <string name="loan_state_unknown">State: unknown</string>
     <string name="just_click_to_get">Just click to get!</string>
     <string name="just_click_to_get_or_swipe_to_get_next">Just click to get or swipe to get next!</string>
+    <string name="refresh_data">refresh data</string>
+    <string name="logout">Logout</string>
+    <string name="change_theme">Change theme</string>
+    <string name="change_language">Change language</string>
 </resources>
