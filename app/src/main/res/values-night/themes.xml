@@ -6,8 +6,8 @@
         <item name="colorPrimaryDark">@color/teal_700</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/indigo_a300</item>
-        <item name="colorSecondaryVariant">@color/indigo_a100</item>
+        <item name="colorSecondary">@color/deep_purple_500</item>
+        <item name="colorSecondaryVariant">@color/deep_purple_300</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -15,8 +15,8 @@
         <item name="backgroundColor">@color/grey_900</item>
         <item name="colorOnBackground">@color/white_a400</item>
         <item name="colorError">@color/red_800</item>
-        <item name="fontFamily">@font/lato</item>
-        <item name="colorOnError">@color/white_a400</item>
+        <item name="fontFamily">@font/open_sans</item>
+        <item name="colorOnError">@color/white</item>
         <item name="colorSurface">@color/grey_800</item>
         <item name="colorOnSurface">@color/white_a400</item>
         <item name="colorPrimarySurface">@color/grey_700</item>

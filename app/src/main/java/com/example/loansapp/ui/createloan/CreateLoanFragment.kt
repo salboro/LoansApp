@@ -203,7 +203,7 @@ class CreateLoanFragment : Fragment() {
                 viewModel.createLoan(newLoan)
                 dialog.cancel()
             }
-            .setNegativeButton(resources.getString(R.string.no)) { dialog, _ ->
+            .setNeutralButton(resources.getString(R.string.no)) { dialog, _ ->
                 dialog.cancel()
             }
             .show()

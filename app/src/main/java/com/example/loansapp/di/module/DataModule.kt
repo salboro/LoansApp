@@ -31,6 +31,7 @@ class DataModule {
             EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
         )
     }
+
     @AppScope
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder()

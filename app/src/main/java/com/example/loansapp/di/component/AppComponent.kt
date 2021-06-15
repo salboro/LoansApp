@@ -4,14 +4,16 @@ import android.content.Context
 import com.example.loansapp.di.module.AppModule
 import com.example.loansapp.di.module.AppSubcomponents
 import com.example.loansapp.di.module.DataModule
+import com.example.loansapp.di.module.UserPreferencesModule
 import com.example.loansapp.di.scope.AppScope
 import com.example.loansapp.di.subcomponent.AuthorizationComponent
 import com.example.loansapp.di.subcomponent.LoansComponent
+import com.example.loansapp.di.subcomponent.MainComponent
 import dagger.BindsInstance
 import dagger.Component
 
 @AppScope
-@Component(modules = [AppModule::class, DataModule::class, AppSubcomponents::class])
+@Component(modules = [AppModule::class, DataModule::class, UserPreferencesModule::class, AppSubcomponents::class])
 interface AppComponent {
     @Component.Factory
     interface Factory {
@@ -21,4 +23,6 @@ interface AppComponent {
     fun authorizationComponent(): AuthorizationComponent.Factory
 
     fun loansComponent(): LoansComponent.Factory
+
+    fun mainComponent(): MainComponent.Factory
 }

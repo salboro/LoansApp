@@ -16,12 +16,14 @@ import com.example.loansapp.R
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.databinding.LoansFragmentBinding
 import com.example.loansapp.domain.entity.ErrorType
+import com.example.loansapp.domain.entity.ThemeType
 import com.example.loansapp.presentation.loans.LoansConditionsViewState
 import com.example.loansapp.presentation.loans.LoansViewModel
 import com.example.loansapp.presentation.loans.LoansViewState
 import com.example.loansapp.ui.OnSwipeTouchListener
 import com.example.loansapp.ui.authorization.EnterFragment
 import com.example.loansapp.ui.createloan.CreateLoanFragment
+import com.example.loansapp.utils.LocaleManager
 import com.example.loansapp.utils.anim.disappearInLeftComeFromRight
 import com.example.loansapp.utils.anim.disappearInRightComeFromLeft
 import com.example.loansapp.utils.anim.yScaleInAndFadeIn
@@ -97,10 +99,42 @@ class LoansFragment : Fragment() {
                         .commit()
                 }
 
+                R.id.action_change_language -> {
+                    createSelectLanguageDialog()
+                }
+
                 R.id.action_change_theme -> changeTheme()
             }
             true
         }
+    }
+
+    private fun createSelectLanguageDialog() {
+        val checkedItem = 0
+        val dialogItems = arrayOf(
+            resources.getString(R.string.english),
+            resources.getString(R.string.russian)
+        )
+        var langCode = ""
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.change_language)
+            .setNeutralButton(R.string.cancel) { dialog, _ ->
+                dialog.cancel()
+            }
+            .setPositiveButton(R.string.change) { dialog, _ ->
+                viewModel.setUserLocale(langCode)
+                dialog.cancel()
+                requireActivity().recreate()
+            }
+            .setSingleChoiceItems(dialogItems, checkedItem) { _, which ->
+                langCode = if (which == 0) {
+                    LocaleManager.ENGLISH_LANGUAGE_CODE
+                } else {
+                    LocaleManager.RUSSIAN_LANGUAGE_CODE
+                }
+            }
+            .show()
     }
 
     private fun renderLoansState(state: LoansViewState?, adapter: LoansAdapter) {
@@ -198,8 +232,10 @@ class LoansFragment : Fragment() {
     private fun changeTheme() {
         if (AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            viewModel.setUserTheme(ThemeType.Dark)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            viewModel.setUserTheme(ThemeType.Light)
         }
     }
 
