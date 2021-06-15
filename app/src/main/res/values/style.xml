@@ -7,11 +7,11 @@
 
     <style name="TitleText">
         <item name="android:textSize">@dimen/title_text_size</item>
-        <item name="fontFamily">@font/lato_bold</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
     </style>
 
     <style name="SimpleButton" parent="Widget.AppCompat.Button">
-        <item name="fontFamily">@font/lato_bold</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
     </style>
 
     <style name="ToolbarLight" parent="Widget.MaterialComponents.Toolbar">

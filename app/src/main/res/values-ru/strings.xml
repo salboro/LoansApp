@@ -43,7 +43,12 @@
     <string name="loan_state_rejected">Состояние: отклонен</string>
     <string name="loan_state_unknown">Состояние: неизвестно</string>
     <string name="just_click_to_get">Кликните для получения!</string>
-    <string name="just_click_to_get_or_swipe_to_get_next">Клик, если устраивает, свайп, если нет!</string>
+    <string name="just_click_to_get_or_swipe_to_get_next">Для выбора клик, для отмены свайп!</string>
     <string name="logout">Выход</string>
     <string name="change_theme">Сменить тему</string>
+    <string name="change_language">Сменить язык</string>
+    <string name="russian">Русский</string>
+    <string name="english">Английский</string>
+    <string name="cancel">Отмена</string>
+    <string name="change">Изменить</string>
 </resources>

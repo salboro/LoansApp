@@ -5,14 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.domain.entity.ResultType
+import com.example.loansapp.domain.entity.ThemeType
 import com.example.loansapp.domain.usecase.GetLoansConditionsUseCase
 import com.example.loansapp.domain.usecase.GetLoansUseCase
+import com.example.loansapp.domain.usecase.SetUserPreferLocaleUseCase
+import com.example.loansapp.domain.usecase.SetUserPreferThemeUseCase
 import com.example.loansapp.presentation.BaseViewModel
 import javax.inject.Inject
 
 class LoansViewModel @Inject constructor(
     private val getLoansUseCase: GetLoansUseCase,
-    private val getLoansConditionsUseCase: GetLoansConditionsUseCase
+    private val getLoansConditionsUseCase: GetLoansConditionsUseCase,
+    private val setUserPreferLocaleUseCase: SetUserPreferLocaleUseCase,
+    private val setUserPreferThemeUseCase: SetUserPreferThemeUseCase
 ) : BaseViewModel() {
 
     private val _loansState = MutableLiveData<LoansViewState>()
@@ -75,5 +80,13 @@ class LoansViewModel @Inject constructor(
                 )
             )
         }).untilDestroy()
+    }
+
+    fun setUserTheme(themeType: ThemeType) {
+        setUserPreferThemeUseCase(themeType)
+    }
+
+    fun setUserLocale(langCode: String) {
+        setUserPreferLocaleUseCase(langCode)
     }
 }
