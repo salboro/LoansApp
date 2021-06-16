@@ -12,4 +12,6 @@ interface UserInformationRepository {
     fun getTheme(): ThemeType
 
     fun setName(name: String)
+
+    fun checkFirstLaunch(): Boolean
 }

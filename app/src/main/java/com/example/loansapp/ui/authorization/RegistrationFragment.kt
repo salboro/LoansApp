@@ -56,7 +56,7 @@ class RegistrationFragment : Fragment() {
         when (state) {
             is RegistrationViewState.SuccessRegistered -> {
                 binding.registerSuccessText.text =
-                    resources.getString(R.string.you_successfully_registered_now_you_might_try_login_with_your_data)
+                    resources.getString(R.string.you_successfully_registered)
 
                 binding.registerProgressBar.fadeReplaceWithView(binding.registerButton)
 

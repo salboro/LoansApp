@@ -18,6 +18,7 @@ class LocalDataSourceImpl @Inject constructor(
         private const val PREFER_THEME = "PREFER THEME"
         private const val PREFER_LOCALE = "PREFER LOCALE"
         private const val USER_NAME = "USER NAME"
+        private const val FIRST_LAUNCH = "FIRST LAUNCH"
     }
 
     override fun saveBearerToken(token: String) {
@@ -86,6 +87,16 @@ class LocalDataSourceImpl @Inject constructor(
         } else {
             Completable.error(java.lang.Exception("User name not found"))
         }
+    }
+
+    override fun checkFirstLaunch(): Boolean {
+        val isFirstLaunch = preferences.getBoolean(FIRST_LAUNCH, true)
+        if (isFirstLaunch) {
+            preferences.edit()
+                .putBoolean(FIRST_LAUNCH, false)
+                .apply()
+        }
+        return isFirstLaunch
     }
 
 

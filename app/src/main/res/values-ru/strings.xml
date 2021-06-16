@@ -12,7 +12,7 @@
     <string name="something_went_wrong_try_later">Что-то пошло не так. Попробуйте повторить позже</string>
     <string name="check_your_internet_connection">Проверьте интерет соединение</string>
     <string name="name_or_password_is_invalid">Имя или пароль введены некорректно</string>
-    <string name="you_successfully_registered_now_you_might_try_login_with_your_data">Регистрация прошла успешно! Теперь вы можете войти :)</string>
+    <string name="you_successfully_registered">Регистрация прошла успешно! Теперь вы можете войти :)</string>
     <string name="user_with_the_same_data_already_exist">Пользователь с такими данными уже существует</string>
     <string name="your_loans">Ваши займы</string>
     <string name="loan_conditions_for_you">Условия займа для вас</string>
@@ -52,4 +52,14 @@
     <string name="cancel">Отмена</string>
     <string name="change">Изменить</string>
     <string name="you_see_cached_data">Вы видите закешированные данные</string>
+    <string name="next">Дальше</string>
+    <string name="get_started">Начать использование</string>
+    <string name="on_boarding_title_1">Выберите нужный вам займ</string>
+    <string name="on_boarding_description_1">Вы можете кликнуть по карточке, если вас устраивают условия займа, если же нет - свайпните в сторону</string>
+    <string name="on_boarding_title_2">Создание займа</string>
+    <string name="on_boarding_description_2">Заполните необходимые поля для оформления займа</string>
+    <string name="on_boarding_title_3">История займов</string>
+    <string name="on_boarding_description_3">После того, как вы сделаете свой первый займ</string>
+    <string name="on_boarding_title_4">Возможности меню</string>
+    <string name="on_boarding_description_4">С помощью меню вы можете изменить язык, тему, обновить данные на экране или выйти из аккаунта</string>
 </resources>

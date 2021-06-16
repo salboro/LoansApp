@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.loansapp.domain.entity.AuthorizeResultType
 import com.example.loansapp.domain.entity.ErrorType
+import com.example.loansapp.domain.usecase.CheckFirstLaunchUseCase
 import com.example.loansapp.domain.usecase.SetUserNameUseCase
 import com.example.loansapp.domain.usecase.UserLoginUseCase
 import com.example.loansapp.presentation.BaseViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val loginUseCase: UserLoginUseCase,
-    private val setUserNameUseCase: SetUserNameUseCase
+    private val setUserNameUseCase: SetUserNameUseCase,
+    private val checkFirstLaunchUseCase: CheckFirstLaunchUseCase
 ) : BaseViewModel() {
 
     private val _state = MutableLiveData<LoginViewState>()
@@ -33,6 +35,8 @@ class LoginViewModel @Inject constructor(
             sendError(ErrorType.InvalidData)
         }
     }
+
+    fun checkFirstLaunch(): Boolean = checkFirstLaunchUseCase()
 
     private fun onSuccess(result: AuthorizeResultType) {
         when (result) {

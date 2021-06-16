@@ -12,7 +12,7 @@
     <string name="something_went_wrong_try_later">Something went wrong. Try later</string>
     <string name="check_your_internet_connection">Check your internet connection</string>
     <string name="name_or_password_is_invalid">Name or password is invalid</string>
-    <string name="you_successfully_registered_now_you_might_try_login_with_your_data">You successfully registered! Now you might try login with your data :)</string>
+    <string name="you_successfully_registered">You successfully registered! Now you might try login with your data :)</string>
     <string name="user_with_the_same_data_already_exist">User with the same data already exist</string>
     <string name="your_loans">Your loans</string>
     <string name="loan_conditions_for_you">Loan conditions for you</string>
@@ -55,4 +55,14 @@
     <string name="cancel">Cancel</string>
     <string name="change">Change</string>
     <string name="you_see_cached_data">You see cached data</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get started</string>
+    <string name="on_boarding_title_1">Choose loan you want</string>
+    <string name="on_boarding_description_1">You might click on the loan card or swipe if you don\'t like the conditions</string>
+    <string name="on_boarding_title_2">Make loan</string>
+    <string name="on_boarding_description_2">Fill necessary fields to make your loan</string>
+    <string name="on_boarding_title_3">Loans history</string>
+    <string name="on_boarding_description_3">After you make your first loan you can see history of your loans</string>
+    <string name="on_boarding_title_4">App bar possibilities</string>
+    <string name="on_boarding_description_4">With app bar menu you can change language, theme, update content on screen or logout from account</string>
 </resources>

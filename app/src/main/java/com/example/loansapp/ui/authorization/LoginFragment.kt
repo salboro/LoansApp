@@ -14,6 +14,7 @@ import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.presentation.authorization.login.LoginViewModel
 import com.example.loansapp.presentation.authorization.login.LoginViewState
 import com.example.loansapp.ui.loans.LoansFragment
+import com.example.loansapp.ui.onboarding.OnBoardingFragment
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView
 import com.example.loansapp.utils.anim.shake
@@ -41,9 +42,9 @@ class LoginFragment : Fragment() {
             renderState(it)
         }
 
-        //TODO: DELETE THIS TWO STRINGS, IT APPEAR BUG
-//        binding.loginNameEditText.setText("string")
-//        binding.loginPasswordEditText.setText("string")
+        //TODO: DELETE THIS TWO STRINGS
+        binding.loginNameEditText.setText("string")
+        binding.loginPasswordEditText.setText("string")
 
         binding.loginButton.setOnClickListener {
             it.closeKeyboard()
@@ -61,9 +62,15 @@ class LoginFragment : Fragment() {
     private fun renderState(state: LoginViewState?) {
         when (state) {
             is LoginViewState.SuccessAuthorised -> {
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, LoansFragment.newInstance())
-                    .commit()
+                if (viewModel.checkFirstLaunch()) {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, OnBoardingFragment.newInstance())
+                        .commit()
+                } else {
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.container, LoansFragment.newInstance())
+                        .commit()
+                }
             }
             is LoginViewState.Error -> {
                 handleError(state.reason)

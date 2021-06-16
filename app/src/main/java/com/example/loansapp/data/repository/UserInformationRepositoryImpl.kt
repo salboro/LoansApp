@@ -25,4 +25,8 @@ class UserInformationRepositoryImpl @Inject constructor(
     override fun setName(name: String) {
         localDataSource.setUserName(name)
     }
+
+    override fun checkFirstLaunch(): Boolean =
+        localDataSource.checkFirstLaunch()
+
 }

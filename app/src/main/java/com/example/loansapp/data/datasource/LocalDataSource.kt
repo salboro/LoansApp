@@ -23,4 +23,6 @@ interface LocalDataSource {
     fun getLoans(): Single<List<Loan>>
 
     fun addLoans(loans: List<Loan>): Completable
+
+    fun checkFirstLaunch(): Boolean
 }
