@@ -11,5 +11,4 @@ class EnterFragmentViewModel @Inject constructor(
     fun setUserLocale(langCode: String) {
         setUserPreferLocaleUseCase(langCode)
     }
-
 }

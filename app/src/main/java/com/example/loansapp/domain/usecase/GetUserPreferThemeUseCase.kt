@@ -10,4 +10,5 @@ class GetUserPreferThemeUseCase @Inject constructor(
 
     operator fun invoke(): ThemeType =
         userInformationRepository.getTheme()
+
 }

@@ -98,10 +98,6 @@ class LoansViewModel @Inject constructor(
         setUserPreferLocaleUseCase(langCode)
     }
 
-    private fun addLoansToCache(loans: List<Loan>) {
-        addLoansToCacheUseCase(loans).subscribe().untilDestroy()
-    }
-
     fun tryGetCachedLoans() {
         getCachedLoansUseCase().subscribe({ loans ->
             if (loans.isNotEmpty()) {
@@ -110,5 +106,9 @@ class LoansViewModel @Inject constructor(
         }, {
             throw it
         }).untilDestroy()
+    }
+
+    private fun addLoansToCache(loans: List<Loan>) {
+        addLoansToCacheUseCase(loans).subscribe().untilDestroy()
     }
 }
