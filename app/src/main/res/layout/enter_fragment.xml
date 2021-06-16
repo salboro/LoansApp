@@ -18,14 +18,12 @@
 
         <ImageView
             android:id="@+id/titleIconImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_marginTop="64dp"
             android:layout_marginBottom="32dp"
             android:contentDescription="@string/title_app_icon"
-            android:scaleX="2.5"
-            android:scaleY="2.5"
-            android:src="@mipmap/ic_coin_foreground" />
+            android:src="@drawable/ic__logo" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/enterOptionsTabLayout"
