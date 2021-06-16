@@ -2,8 +2,11 @@ package com.example.loansapp.di.module
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.example.loansapp.data.db.LoansDatabase
+import com.example.loansapp.data.db.LoansDatabaseDao
 import com.example.loansapp.data.network.LoansApiService
 import com.example.loansapp.di.converter.ConverterFactory
 import com.example.loansapp.di.scope.AppScope
@@ -15,9 +18,24 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 private const val BASE_URL = "http://103.23.208.205:8082/"
+private const val DATABASE_NAME = "loans_database"
 
 @Module
 class DataModule {
+    @AppScope
+    @Provides
+    fun provideDB(context: Context): LoansDatabase =
+        Room.databaseBuilder(
+            context,
+            LoansDatabase::class.java,
+            DATABASE_NAME
+        ).build()
+
+    @AppScope
+    @Provides
+    fun provideDBDao(dataBase: LoansDatabase): LoansDatabaseDao =
+        dataBase.databaseDao
+
     @AppScope
     @Provides
     fun provideEncryptedSharedPreferences(context: Context): SharedPreferences {

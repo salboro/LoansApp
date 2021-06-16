@@ -3,13 +3,11 @@ package com.example.loansapp.presentation.loans
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.loansapp.data.network.Loan
 import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.domain.entity.ResultType
 import com.example.loansapp.domain.entity.ThemeType
-import com.example.loansapp.domain.usecase.GetLoansConditionsUseCase
-import com.example.loansapp.domain.usecase.GetLoansUseCase
-import com.example.loansapp.domain.usecase.SetUserPreferLocaleUseCase
-import com.example.loansapp.domain.usecase.SetUserPreferThemeUseCase
+import com.example.loansapp.domain.usecase.*
 import com.example.loansapp.presentation.BaseViewModel
 import javax.inject.Inject
 
@@ -17,7 +15,9 @@ class LoansViewModel @Inject constructor(
     private val getLoansUseCase: GetLoansUseCase,
     private val getLoansConditionsUseCase: GetLoansConditionsUseCase,
     private val setUserPreferLocaleUseCase: SetUserPreferLocaleUseCase,
-    private val setUserPreferThemeUseCase: SetUserPreferThemeUseCase
+    private val setUserPreferThemeUseCase: SetUserPreferThemeUseCase,
+    private val addLoansToCacheUseCase: AddLoansToCacheUseCase,
+    private val getCachedLoansUseCase: GetCachedLoansUseCase
 ) : BaseViewModel() {
 
     private val _loansState = MutableLiveData<LoansViewState>()
@@ -57,29 +57,37 @@ class LoansViewModel @Inject constructor(
     fun getLoans() {
         _loansState.postValue(LoansViewState.Loading)
 
-        getLoansUseCase().subscribe({ result ->
-            when (result) {
-                is ResultType.Success -> _loansState.postValue(
-                    LoansViewState.Success(
-                        result.data
-                    )
-                )
-
-                is ResultType.Error -> _loansState.postValue(
-                    LoansViewState.Error(
-                        result.error
-                    )
-                )
+        getLoansUseCase()
+            .doAfterSuccess { result ->
+                if (result is ResultType.Success) {
+                    addLoansToCache(result.data)
+                }
             }
-        }, {
-            Log.i("msg2", it.stackTraceToString())
+            .subscribe({ result ->
+                when (result) {
+                    is ResultType.Success -> {
+                        _loansState.postValue(
+                            LoansViewState.Success(
+                                result.data
+                            )
+                        )
+                    }
 
-            _loansState.postValue(
-                LoansViewState.Error(
-                    ErrorType.Connection
+                    is ResultType.Error -> _loansState.postValue(
+                        LoansViewState.Error(
+                            result.error
+                        )
+                    )
+                }
+            }, {
+                Log.i("msg2", it.stackTraceToString())
+
+                _loansState.postValue(
+                    LoansViewState.Error(
+                        ErrorType.Connection
+                    )
                 )
-            )
-        }).untilDestroy()
+            }).untilDestroy()
     }
 
     fun setUserTheme(themeType: ThemeType) {
@@ -88,5 +96,19 @@ class LoansViewModel @Inject constructor(
 
     fun setUserLocale(langCode: String) {
         setUserPreferLocaleUseCase(langCode)
+    }
+
+    private fun addLoansToCache(loans: List<Loan>) {
+        addLoansToCacheUseCase(loans).subscribe().untilDestroy()
+    }
+
+    fun tryGetCachedLoans() {
+        getCachedLoansUseCase().subscribe({ loans ->
+            if (loans.isNotEmpty()) {
+                _loansState.postValue(LoansViewState.CachedSuccess(loans))
+            }
+        }, {
+            throw it
+        }).untilDestroy()
     }
 }

@@ -51,4 +51,5 @@
     <string name="english">Английский</string>
     <string name="cancel">Отмена</string>
     <string name="change">Изменить</string>
+    <string name="you_see_cached_data">Вы видите закешированные данные</string>
 </resources>

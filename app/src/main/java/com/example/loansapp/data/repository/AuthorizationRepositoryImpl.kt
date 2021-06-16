@@ -16,14 +16,10 @@ class AuthorizationRepositoryImpl @Inject constructor(
 ) : AuthorizationRepository {
     override fun login(name: String, password: String): Single<AuthorizeResultType> =
         remoteDataSource.login(name, password)
-            .doAfterSuccess {
-                if (it is ResultType.Success) {
-                    localDataSource.saveBearerToken(it.data)
-                }
-            }
             .map {
                 when (it) {
                     is ResultType.Success -> {
+                        localDataSource.saveBearerToken(it.data)
                         AuthorizeResultType.Success
                     }
 

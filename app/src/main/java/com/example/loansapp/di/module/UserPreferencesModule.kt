@@ -1,8 +1,8 @@
 package com.example.loansapp.di.module
 
-import com.example.loansapp.data.repository.UserPreferencesRepositoryImpl
+import com.example.loansapp.data.repository.UserInformationRepositoryImpl
 import com.example.loansapp.di.scope.AppScope
-import com.example.loansapp.domain.repository.UserPreferencesRepository
+import com.example.loansapp.domain.repository.UserInformationRepository
 import dagger.Binds
 import dagger.Module
 
@@ -11,5 +11,5 @@ interface UserPreferencesModule {
 
     @AppScope
     @Binds
-    fun bindsUserPreferencesRepository(repositoryImpl: UserPreferencesRepositoryImpl): UserPreferencesRepository
+    fun bindsUserPreferencesRepository(repositoryImpl: UserInformationRepositoryImpl): UserInformationRepository
 }

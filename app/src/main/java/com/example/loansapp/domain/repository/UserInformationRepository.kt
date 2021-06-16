@@ -2,7 +2,7 @@ package com.example.loansapp.domain.repository
 
 import com.example.loansapp.domain.entity.ThemeType
 
-interface UserPreferencesRepository {
+interface UserInformationRepository {
     fun getLocale(): String
 
     fun setLocale(langCode: String)
@@ -10,4 +10,6 @@ interface UserPreferencesRepository {
     fun setTheme(theme: ThemeType)
 
     fun getTheme(): ThemeType
+
+    fun setName(name: String)
 }

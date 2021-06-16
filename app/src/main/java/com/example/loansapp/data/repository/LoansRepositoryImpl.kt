@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LoansRepositoryImpl @Inject constructor(
-    localDataSource: LocalDataSource,
+    private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) : LoansRepository {
     private val bearerToken: String = localDataSource.getBearerToken()
@@ -28,5 +28,11 @@ class LoansRepositoryImpl @Inject constructor(
         newLoan,
         bearerToken
     ).subscribeOn(Schedulers.io())
+
+    override fun getAllCached(): Single<List<Loan>> =
+        localDataSource.getLoans().subscribeOn(Schedulers.io())
+
+    override fun addToCache(loans: List<Loan>) =
+        localDataSource.addLoans(loans).subscribeOn(Schedulers.io())
 
 }

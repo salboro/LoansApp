@@ -54,4 +54,5 @@
     <string name="english">English</string>
     <string name="cancel">Cancel</string>
     <string name="change">Change</string>
+    <string name="you_see_cached_data">You see cached data</string>
 </resources>

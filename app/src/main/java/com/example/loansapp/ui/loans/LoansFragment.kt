@@ -31,6 +31,7 @@ import com.example.loansapp.utils.anim.yScaleOutAndFadeOut
 import com.example.loansapp.utils.getColor
 import com.example.loansapp.utils.getResourcesLoanState
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 
@@ -150,14 +151,26 @@ class LoansFragment : Fragment() {
 
                 binding.onErrorListCard.isVisible = false
                 binding.loansListProgressBar.isVisible = false
-                adapter.submitList(state.loans)
+                adapter.data = state.loans
+            }
+
+            is LoansViewState.CachedSuccess -> {
+                binding.loansList.isVisible = true
+                binding.onErrorListCard.isVisible = false
+                binding.onEmptyListCard.isVisible = false
+                binding.loansListProgressBar.isVisible = false
+                adapter.data = state.loans
+
+                showSnackbar()
             }
 
             is LoansViewState.Error -> {
                 handleLoansError(state.reason)
 
+                binding.onEmptyListCard.isVisible = false
                 binding.loansListProgressBar.isVisible = false
                 binding.onErrorListCard.isVisible = true
+                viewModel.tryGetCachedLoans()
             }
 
             is LoansViewState.Loading -> {
@@ -165,6 +178,19 @@ class LoansFragment : Fragment() {
                 binding.loansListProgressBar.isVisible = true
             }
         }
+    }
+
+    private fun showSnackbar() {
+        Snackbar.make(
+            binding.root,
+            resources.getString(R.string.you_see_cached_data),
+            Snackbar.LENGTH_LONG
+        )
+            .setBackgroundTint(requireContext().theme.getColor(R.attr.colorSecondary))
+            .setTextColor(requireContext().theme.getColor(R.attr.colorOnSecondary))
+            .setActionTextColor(requireContext().theme.getColor(R.attr.colorOnSecondary))
+            .setAction(resources.getString(R.string.i_see)) {}
+            .show()
     }
 
     private fun handleLoansError(reason: ErrorType) {

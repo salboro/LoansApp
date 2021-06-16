@@ -1,12 +1,12 @@
 package com.example.loansapp.domain.usecase
 
-import com.example.loansapp.domain.repository.UserPreferencesRepository
+import com.example.loansapp.domain.repository.UserInformationRepository
 import javax.inject.Inject
 
 class GetUserPreferLocaleUseCase @Inject constructor(
-    private val userPreferencesRepository: UserPreferencesRepository
+    private val userInformationRepository: UserInformationRepository
 ) {
 
     operator fun invoke(): String =
-        userPreferencesRepository.getLocale()
+        userInformationRepository.getLocale()
 }

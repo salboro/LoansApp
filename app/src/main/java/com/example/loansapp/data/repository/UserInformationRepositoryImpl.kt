@@ -2,12 +2,12 @@ package com.example.loansapp.data.repository
 
 import com.example.loansapp.data.datasource.LocalDataSource
 import com.example.loansapp.domain.entity.ThemeType
-import com.example.loansapp.domain.repository.UserPreferencesRepository
+import com.example.loansapp.domain.repository.UserInformationRepository
 import javax.inject.Inject
 
-class UserPreferencesRepositoryImpl @Inject constructor(
+class UserInformationRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
-) : UserPreferencesRepository {
+) : UserInformationRepository {
     override fun getLocale(): String =
         localDataSource.getUserPreferLocale()
 
@@ -21,4 +21,8 @@ class UserPreferencesRepositoryImpl @Inject constructor(
 
     override fun getTheme(): ThemeType =
         localDataSource.getUserPreferTheme()
+
+    override fun setName(name: String) {
+        localDataSource.setUserName(name)
+    }
 }

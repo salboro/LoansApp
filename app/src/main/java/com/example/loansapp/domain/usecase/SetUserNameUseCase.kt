@@ -3,11 +3,11 @@ package com.example.loansapp.domain.usecase
 import com.example.loansapp.domain.repository.UserInformationRepository
 import javax.inject.Inject
 
-class SetUserPreferLocaleUseCase @Inject constructor(
+class SetUserNameUseCase @Inject constructor(
     private val userInformationRepository: UserInformationRepository
 ) {
 
-    operator fun invoke(langCode: String) {
-        userInformationRepository.setLocale(langCode)
+    operator fun invoke(name: String) {
+        userInformationRepository.setName(name)
     }
 }
