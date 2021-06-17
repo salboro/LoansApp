@@ -10,7 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.loansapp.MyApplication
 import com.example.loansapp.R
 import com.example.loansapp.databinding.EnterFragmentBinding
-import com.example.loansapp.presentation.authorization.EnterFragmentViewModel
+import com.example.loansapp.presentation.authorization.EnterViewModel
 import com.example.loansapp.utils.LocaleManager
 import com.example.loansapp.utils.transformer.ZoomOutPageTransformer
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,7 +26,7 @@ class EnterFragment : Fragment() {
     }
 
     @Inject
-    lateinit var viewModel: EnterFragmentViewModel
+    lateinit var viewModel: EnterViewModel
 
     private lateinit var binding: EnterFragmentBinding
 

@@ -9,7 +9,7 @@ import com.example.loansapp.domain.usecase.UserRegistrationUseCase
 import com.example.loansapp.presentation.BaseViewModel
 import javax.inject.Inject
 
-class RegisterViewModel @Inject constructor(
+class RegistrationViewModel @Inject constructor(
     private val registrationUseCase: UserRegistrationUseCase
 ) : BaseViewModel() {
 

@@ -30,22 +30,27 @@ class CreateLoanViewModel @Inject constructor(
                 }
                 .subscribe(
                     { result ->
-                        when (result) {
-                            is ResultType.Success -> _state.postValue(
-                                CreateLoanViewState.Success(result.data)
-                            )
-
-                            is ResultType.Error -> sendError(result.error)
-                        }
-
+                        handleState(result)
                     }, {
                         sendError(ErrorType.Connection)
                     }
-                ).untilDestroy()
+                )
+                .untilDestroy()
+
         } else {
             sendError(ErrorType.InvalidData)
         }
 
+    }
+
+    private fun handleState(result: ResultType<Loan>?) {
+        when (result) {
+            is ResultType.Success -> _state.postValue(
+                CreateLoanViewState.Success(result.data)
+            )
+
+            is ResultType.Error -> sendError(result.error)
+        }
     }
 
     private fun checkNewLoan(newLoan: NewLoan): Boolean {

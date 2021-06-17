@@ -11,7 +11,7 @@ import com.example.loansapp.MyApplication
 import com.example.loansapp.R
 import com.example.loansapp.databinding.RegisterFragmentBinding
 import com.example.loansapp.domain.entity.ErrorType
-import com.example.loansapp.presentation.authorization.registration.RegisterViewModel
+import com.example.loansapp.presentation.authorization.registration.RegistrationViewModel
 import com.example.loansapp.presentation.authorization.registration.RegistrationViewState
 import com.example.loansapp.utils.anim.fadeInAndFadeOutOverTime
 import com.example.loansapp.utils.anim.fadeReplaceWithView
@@ -26,7 +26,7 @@ class RegistrationFragment : Fragment() {
     }
 
     @Inject
-    lateinit var viewModel: RegisterViewModel
+    lateinit var viewModel: RegistrationViewModel
 
     private lateinit var binding: RegisterFragmentBinding
 

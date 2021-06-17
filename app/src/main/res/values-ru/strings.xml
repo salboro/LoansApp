@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LoansApp</string>
     <string name="login">Войти</string>
     <string name="register">Зарегистрироваться</string>
     <string name="password">Пароль</string>
