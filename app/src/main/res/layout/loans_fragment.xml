@@ -161,9 +161,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="8dp"
                     android:src="@drawable/ic_baseline_attach_money_24"
-                    android:maxLines="2"
-                    android:text="@string/just_click_to_get_or_swipe_to_get_next"
-                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/calendarImage" />

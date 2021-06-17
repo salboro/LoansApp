@@ -15,18 +15,18 @@ class LoansRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) : LoansRepository {
-    private val bearerToken: String = localDataSource.getBearerToken()
 
     override fun getAll(): Single<ResultType<List<Loan>>> =
-        remoteDataSource.getLoans(bearerToken).subscribeOn(Schedulers.io())
+        remoteDataSource.getLoans(localDataSource.getBearerToken()).subscribeOn(Schedulers.io())
 
 
     override fun getConditions(): Single<ResultType<LoansConditions>> =
-        remoteDataSource.getLoansConditions(bearerToken).subscribeOn(Schedulers.io())
+        remoteDataSource.getLoansConditions(localDataSource.getBearerToken())
+            .subscribeOn(Schedulers.io())
 
     override fun create(newLoan: NewLoan): Single<ResultType<Loan>> = remoteDataSource.createLoan(
         newLoan,
-        bearerToken
+        localDataSource.getBearerToken()
     ).subscribeOn(Schedulers.io())
 
     override fun getAllCached(): Single<List<Loan>> =

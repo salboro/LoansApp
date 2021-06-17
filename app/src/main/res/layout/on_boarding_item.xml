@@ -25,7 +25,7 @@
         android:textAllCaps="true"
         android:textColor="?colorOnBackground"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        style="@style/TitleText" />
 
     <TextView
         android:id="@+id/textDescription"

@@ -65,4 +65,9 @@
     <string name="on_boarding_description_3">After you make your first loan you can see history of your loans</string>
     <string name="on_boarding_title_4">App bar possibilities</string>
     <string name="on_boarding_description_4">With app bar menu you can change language, theme, update content on screen or logout from account</string>
+    <string name="notification_channel_id" translatable="false">loans_channel</string>
+    <string name="notification_channel_name" translatable="false">Loans</string>
+    <string name="notification_title">LoansApp</string>
+    <string name="do_not_forget_about_loans">Do not forget about loans</string>
+    <string name="loans_count_template">You have %d unpaid loans</string>
 </resources>

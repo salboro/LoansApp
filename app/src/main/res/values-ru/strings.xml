@@ -59,7 +59,10 @@
     <string name="on_boarding_title_2">Создание займа</string>
     <string name="on_boarding_description_2">Заполните необходимые поля для оформления займа</string>
     <string name="on_boarding_title_3">История займов</string>
-    <string name="on_boarding_description_3">После того, как вы сделаете свой первый займ</string>
+    <string name="on_boarding_description_3">После того, как вы сделаете свой первый займ, вам станет доступна история займов</string>
     <string name="on_boarding_title_4">Возможности меню</string>
     <string name="on_boarding_description_4">С помощью меню вы можете изменить язык, тему, обновить данные на экране или выйти из аккаунта</string>
+    <string name="notification_title">LoansApp</string>
+    <string name="do_not_forget_about_loans">Не забывайте о задолженностях</string>
+    <string name="loans_count_template">Число ваших непогашенных задолженностей %d</string>
 </resources>
