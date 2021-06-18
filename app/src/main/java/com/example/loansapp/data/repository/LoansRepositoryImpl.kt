@@ -7,6 +7,7 @@ import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.domain.entity.NewLoan
 import com.example.loansapp.domain.entity.ResultType
 import com.example.loansapp.domain.repository.LoansRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -32,7 +33,7 @@ class LoansRepositoryImpl @Inject constructor(
     override fun getAllCached(): Single<List<Loan>> =
         localDataSource.getLoans().subscribeOn(Schedulers.io())
 
-    override fun addToCache(loans: List<Loan>) =
+    override fun addToCache(loans: List<Loan>): Completable =
         localDataSource.addLoans(loans).subscribeOn(Schedulers.io())
 
 }

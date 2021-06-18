@@ -44,7 +44,7 @@ class LoansApiMockService(
             phoneNumber = "123",
             period = 45,
             date = "test",
-            state = "Rejected"
+            state = "REJECTED"
         )
     )
 

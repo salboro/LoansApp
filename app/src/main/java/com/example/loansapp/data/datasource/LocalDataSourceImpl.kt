@@ -30,10 +30,6 @@ class LocalDataSourceImpl @Inject constructor(
     override fun getBearerToken(): String =
         preferences.getString(BEARER_TOKEN_STRING_NAME, "") ?: ""
 
-    override fun getUserPreferLocale(): String =
-        preferences.getString(PREFER_LOCALE, "") ?: ""
-
-
     override fun setUserPreferLocale(langCode: String) {
         preferences.edit()
             .putString(PREFER_LOCALE, langCode)

@@ -9,6 +9,5 @@ class SetUserPreferLocaleUseCase @Inject constructor(
 
     operator fun invoke(langCode: String) {
         userInformationRepository.setLocale(langCode)
-
     }
 }

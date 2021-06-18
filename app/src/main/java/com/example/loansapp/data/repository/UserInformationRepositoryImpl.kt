@@ -8,9 +8,6 @@ import javax.inject.Inject
 class UserInformationRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : UserInformationRepository {
-    override fun getLocale(): String =
-        localDataSource.getUserPreferLocale()
-
     override fun setLocale(langCode: String) {
         localDataSource.setUserPreferLocale(langCode)
     }

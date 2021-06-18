@@ -25,7 +25,7 @@
     <string name="create_loan">Создание займа</string>
     <string name="conditions_template">С %.2f%% и на число месяцев равное %d</string>
     <string name="accept_loan_creation_information_template">Ваше имя: %s \nВаша фамилия: %s \nВаш номер телефона: %s \nСумма: %d \nПроцент: %.2f \nЧисло месяцев: %d</string>
-    <string name="loan_created_information_template">Номер займа: %d \nВаше имя: %s \nВаша фамилия: %s \nВаш номер телефона: %s \nСумма: %d \nПроцент: %.2f \nЧисло месяцев: %d \nДата создания займа: %s \nСостояние займа: %s</string>
+    <string name="loan_created_information_template">Номер займа: %d \nВаше имя: %s \nВаша фамилия: %s \nВаш номер телефона: %s \nСумма: %d \nПроцент: %.2f \nЧисло месяцев: %d \nДата создания займа: %s \n%s</string>
     <string name="are_you_sure">Вы уверены?</string>
     <string name="your_loan_created">Займ создан!</string>
     <string name="excellent">Замечательно!</string>

@@ -10,8 +10,6 @@ interface LocalDataSource {
 
     fun getBearerToken(): String
 
-    fun getUserPreferLocale(): String
-
     fun setUserPreferLocale(langCode: String)
 
     fun setUserPreferTheme(theme: ThemeType)
