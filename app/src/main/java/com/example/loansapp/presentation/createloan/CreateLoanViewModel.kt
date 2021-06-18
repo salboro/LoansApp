@@ -51,8 +51,8 @@ class CreateLoanViewModel @Inject constructor(
     }
 
     private fun checkNewLoan(newLoan: NewLoan): Boolean {
-        return newLoan.firstName.isNotEmpty() ||
-                newLoan.lastName.isNotEmpty() ||
+        return newLoan.firstName.isNotEmpty() &&
+                newLoan.lastName.isNotEmpty() &&
                 newLoan.phoneNumber.isNotEmpty()
     }
 

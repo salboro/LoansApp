@@ -127,8 +127,6 @@ class CreateLoanFragment : Fragment() {
                     createLoanErrorText.text =
                         resources.getString(R.string.name_or_last_name_or_phone_number_is_invalid)
                 }
-
-
             }
 
             is ErrorType.Network -> {
