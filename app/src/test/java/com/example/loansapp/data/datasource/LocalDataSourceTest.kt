@@ -6,11 +6,13 @@ import com.example.loansapp.data.db.LoansDatabaseDao
 import com.example.loansapp.data.db.entity.LoanDb
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.domain.entity.ThemeType
+import com.example.loansapp.rule.RxImmediateSchedulerRule
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.Single
 import io.reactivex.SingleObserver
 import junit.framework.TestCase.assertEquals
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.mock
@@ -61,6 +63,10 @@ class LocalDataSourceTest {
     private val database: LoansDatabaseDao = mock()
 
     private var localDataSource = LocalDataSourceImpl(preferences, database)
+
+    @Rule
+    @JvmField
+    var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Test
     fun `WHEN save bearer token EXPECT just runs`() {

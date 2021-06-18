@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
+import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "http://103.23.208.205:8082/"
 private const val DATABASE_NAME = "loans_database"
@@ -33,6 +34,8 @@ class DataModule {
     fun provideMockService(retrofit: Retrofit): LoansApiService {
         val mockRetrofit =
             MockRetrofit.Builder(retrofit).networkBehavior(NetworkBehavior.create()).build()
+        mockRetrofit.networkBehavior().setDelay(500L, TimeUnit.MILLISECONDS)
+        mockRetrofit.networkBehavior().setErrorPercent(0)
         val behaviorDelegate = mockRetrofit.create(LoansApiService::class.java)
         return LoansApiMockService(behaviorDelegate)
     }

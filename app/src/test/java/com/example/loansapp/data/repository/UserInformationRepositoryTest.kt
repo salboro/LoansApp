@@ -2,7 +2,9 @@ package com.example.loansapp.data.repository
 
 import com.example.loansapp.data.datasource.LocalDataSource
 import com.example.loansapp.domain.entity.ThemeType
+import com.example.loansapp.rule.RxImmediateSchedulerRule
 import junit.framework.TestCase.assertEquals
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.mock
@@ -16,6 +18,10 @@ class UserInformationRepositoryTest {
 
     private val localDataSource: LocalDataSource = mock()
     private val userInformationRepository = UserInformationRepositoryImpl(localDataSource)
+
+    @Rule
+    @JvmField
+    var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Test
     fun `WHEN set locale EXPECT just runs`() {

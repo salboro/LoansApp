@@ -42,10 +42,6 @@ class LoginFragment : Fragment() {
             renderState(it)
         }
 
-        //TODO: DELETE THIS TWO STRINGS
-        binding.loginNameEditText.setText("string")
-        binding.loginPasswordEditText.setText("string")
-
         binding.loginButton.setOnClickListener {
             it.closeKeyboard()
 

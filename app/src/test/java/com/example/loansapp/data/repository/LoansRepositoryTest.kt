@@ -7,10 +7,12 @@ import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.domain.entity.NewLoan
 import com.example.loansapp.domain.entity.ResultType
+import com.example.loansapp.rule.RxImmediateSchedulerRule
 import io.reactivex.Completable
 import io.reactivex.CompletableObserver
 import io.reactivex.Single
 import io.reactivex.SingleObserver
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
@@ -52,6 +54,10 @@ class LoansRepositoryTest {
     private val remoteDataSource: RemoteDataSource = mock()
 
     private val loansRepository = LoansRepositoryImpl(localDataSource, remoteDataSource)
+
+    @Rule
+    @JvmField
+    var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Test
     fun `WHEN get all loans success EXPECT returns success`() {

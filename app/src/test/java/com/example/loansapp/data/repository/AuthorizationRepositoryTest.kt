@@ -5,8 +5,10 @@ import com.example.loansapp.data.datasource.RemoteDataSource
 import com.example.loansapp.domain.entity.AuthorizeResultType
 import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.domain.entity.ResultType
+import com.example.loansapp.rule.RxImmediateSchedulerRule
 import io.reactivex.Single
 import io.reactivex.SingleObserver
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.*
 
@@ -22,6 +24,10 @@ class AuthorizationRepositoryTest {
     private val localDataSource: LocalDataSource = mock()
     private val authorizationRepository =
         AuthorizationRepositoryImpl(remoteDataSource, localDataSource)
+
+    @Rule
+    @JvmField
+    var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Test
     fun `WHEN login success EXPECT returns success`() {

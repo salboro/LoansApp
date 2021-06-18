@@ -6,8 +6,10 @@ import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.data.network.RegistrationRequest
 import com.example.loansapp.domain.entity.NewLoan
 import com.example.loansapp.domain.entity.ResultType
+import com.example.loansapp.rule.RxImmediateSchedulerRule
 import io.reactivex.Single
 import io.reactivex.SingleObserver
+import org.junit.Rule
 import org.junit.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
@@ -46,6 +48,10 @@ class RemoteDataSourceTest {
 
     private val apiService: LoansApiService = mock()
     private val remoteDataSource = RemoteDataSourceImpl(apiService)
+
+    @Rule
+    @JvmField
+    var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Test
     fun `WHEN login success EXPRECT returns success`() {
