@@ -79,7 +79,8 @@ class LocalDataSourceImpl @Inject constructor(
     override fun addLoans(loans: List<Loan>): Completable {
         val name = getUserName()
         return if (name != "") {
-            database.addLoans(loans.map { it.convertToLoanDb(name) })
+            val loansDb = loans.map { it.convertToLoanDb(name) }
+            database.addLoans(loansDb)
         } else {
             Completable.error(java.lang.Exception("User name not found"))
         }

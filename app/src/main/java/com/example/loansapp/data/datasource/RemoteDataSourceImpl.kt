@@ -1,6 +1,5 @@
 package com.example.loansapp.data.datasource
 
-import android.util.Log
 import com.example.loansapp.data.ErrorHandlerImpl
 import com.example.loansapp.data.network.Loan
 import com.example.loansapp.data.network.LoansApiService
@@ -103,7 +102,6 @@ class RemoteDataSourceImpl @Inject constructor(
 
         return response.map {
             if (it.isSuccessful) {
-                Log.i("create", "suc")
                 ResultType.Success(it.body()!!)
             } else {
                 ResultType.Error(ErrorHandlerImpl().getError(it.code()))
