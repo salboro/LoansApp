@@ -55,15 +55,18 @@ class RegistrationFragment : Fragment() {
     private fun renderState(state: RegistrationViewState?) {
         when (state) {
             is RegistrationViewState.SuccessRegistered -> {
-                binding.registerSuccessText.text =
-                    resources.getString(R.string.you_successfully_registered)
+                with(binding) {
+                    registerSuccessText.text =
+                        resources.getString(R.string.you_successfully_registered)
 
-                binding.registerProgressBar.fadeReplaceWithView(binding.registerButton)
+                    registerProgressBar.fadeReplaceWithView(binding.registerButton)
 
-                binding.registerButton.isEnabled = false
+                    registerButton.isEnabled = false
 
-                binding.registerSuccessCard.fadeInAndFadeOutOverTime(4000L)
+                    registerSuccessCard.fadeInAndFadeOutOverTime(4000L)
+                }
             }
+
             is RegistrationViewState.Error -> {
                 handleError(state.reason)
 
@@ -75,9 +78,11 @@ class RegistrationFragment : Fragment() {
             }
 
             is RegistrationViewState.Loading -> {
-                binding.registerNameField.isErrorEnabled = false
-                binding.registerPasswordField.isErrorEnabled = false
-                binding.registerButton.fadeReplaceWithView(binding.registerProgressBar)
+                with(binding) {
+                    registerNameField.isErrorEnabled = false
+                    registerPasswordField.isErrorEnabled = false
+                    registerButton.fadeReplaceWithView(binding.registerProgressBar)
+                }
             }
         }
     }

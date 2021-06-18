@@ -23,19 +23,10 @@ class CreateLoanViewModel @Inject constructor(
         if (checkNewLoan(newLoan)) {
             _state.postValue(CreateLoanViewState.Loading)
             createLoanUseCase(newLoan)
-                .doAfterSuccess { result ->
-                    if (result is ResultType.Success) {
-                        addNewLoanToCache(result.data)
-                    }
-                }
-                .subscribe(
-                    { result ->
-                        handleState(result)
-                    }, {
-                        sendError(ErrorType.Connection)
-                    }
-                )
-                .untilDestroy()
+                .doAfterSuccess(::doAfterCreateLoanSuccess)
+                .subscribe(::onCreateLoanSuccess) {
+                    sendError(ErrorType.Connection)
+                }.untilDestroy()
 
         } else {
             sendError(ErrorType.InvalidData)
@@ -43,7 +34,13 @@ class CreateLoanViewModel @Inject constructor(
 
     }
 
-    private fun handleState(result: ResultType<Loan>?) {
+    private fun doAfterCreateLoanSuccess(result: ResultType<Loan>?) {
+        if (result is ResultType.Success) {
+            addNewLoanToCache(result.data)
+        }
+    }
+
+    private fun onCreateLoanSuccess(result: ResultType<Loan>?) {
         when (result) {
             is ResultType.Success -> _state.postValue(
                 CreateLoanViewState.Success(result.data)

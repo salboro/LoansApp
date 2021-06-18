@@ -78,9 +78,11 @@ class CreateLoanFragment : Fragment() {
             is CreateLoanViewState.Loading -> {
                 binding.createLoanButton.fadeReplaceWithView(binding.progressBar)
 
-                binding.lastNameField.isErrorEnabled = false
-                binding.nameField.isErrorEnabled = false
-                binding.phoneNumberField.isErrorEnabled = false
+                with(binding) {
+                    lastNameField.isErrorEnabled = false
+                    nameField.isErrorEnabled = false
+                    phoneNumberField.isErrorEnabled = false
+                }
             }
 
             is CreateLoanViewState.Success -> {
@@ -106,21 +108,27 @@ class CreateLoanFragment : Fragment() {
                 resources.getString(R.string.check_your_internet_connection)
 
             is ErrorType.InvalidData -> {
-                binding.nameField.apply {
-                    shake()
-                    error = "Invalid"
-                }
-                binding.lastNameField.apply {
-                    shake()
-                    error = "Invalid"
-                }
-                binding.phoneNumberField.apply {
-                    shake()
-                    error = "Invalid"
+                with(binding) {
+                    nameField.apply {
+                        shake()
+                        error = "Invalid"
+                    }
+
+                    lastNameField.apply {
+                        shake()
+                        error = "Invalid"
+                    }
+
+                    phoneNumberField.apply {
+                        shake()
+                        error = "Invalid"
+                    }
+
+                    createLoanErrorText.text =
+                        resources.getString(R.string.name_or_last_name_or_phone_number_is_invalid)
                 }
 
-                binding.createLoanErrorText.text =
-                    resources.getString(R.string.name_or_last_name_or_phone_number_is_invalid)
+
             }
 
             is ErrorType.Network -> {
@@ -136,18 +144,18 @@ class CreateLoanFragment : Fragment() {
     }
 
     private fun setViewProperties() {
-        binding.amountSlider.valueFrom = 1.0f
-        binding.amountSlider.valueTo = maxAmount.toFloat()
-        binding.amountSlider.value = maxAmount / 2.toFloat()
+        with(binding) {
+            amountSlider.valueFrom = 1.0f
+            amountSlider.valueTo = maxAmount.toFloat()
+            amountSlider.value = maxAmount / 2.toFloat()
+            amountText.text = resources.getString(R.string.max_amount_template, maxAmount)
+            conditionsText.text =
+                resources.getString(R.string.conditions_template, percent, period)
+        }
 
         binding.amountSlider.addOnChangeListener { _, value, _ ->
             binding.amountText.text = resources.getString(R.string.amount_template, value)
         }
-
-        binding.amountText.text = resources.getString(R.string.max_amount_template, maxAmount)
-
-        binding.conditionsText.text =
-            resources.getString(R.string.conditions_template, percent, period)
 
         binding.backArrowImage.setOnClickListener {
             requireActivity().onBackPressed()

@@ -43,10 +43,12 @@ class LoanViewHolder(
 
     @SuppressLint("ResourceType")
     fun bind(loan: Loan) {
-        binding.loanItemAmountText.text =
-            context.resources.getString(R.string.amount_template, loan.amount)
-        binding.stateText.text = loan.state.getResourcesLoanState(context)
-        binding.itemPositionText.text = layoutPosition.plus(1).toString()
+        with(binding) {
+            loanItemAmountText.text =
+                context.resources.getString(R.string.amount_template, loan.amount)
+            stateText.text = loan.state.getResourcesLoanState(context)
+            itemPositionText.text = layoutPosition.plus(1).toString()
+        }
 
         binding.root.setOnClickListener {
             onClick(loan)

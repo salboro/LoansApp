@@ -79,9 +79,11 @@ class LoginFragment : Fragment() {
             }
 
             is LoginViewState.Loading -> {
-                binding.loginButton.fadeReplaceWithView(binding.loginProgressBar)
-                binding.loginNameField.isErrorEnabled = false
-                binding.loginPasswordField.isErrorEnabled = false
+                with(binding) {
+                    loginButton.fadeReplaceWithView(binding.loginProgressBar)
+                    loginNameField.isErrorEnabled = false
+                    loginPasswordField.isErrorEnabled = false
+                }
             }
         }
     }
@@ -89,16 +91,20 @@ class LoginFragment : Fragment() {
     private fun handleError(errorType: ErrorType) {
         when (errorType) {
             ErrorType.NotFound -> {
-                binding.loginNameField.apply {
-                    shake()
-                    error = "Incorrect"
+                with(binding) {
+                    loginNameField.apply {
+                        shake()
+                        error = "Incorrect"
+                    }
+
+                    loginPasswordField.apply {
+                        shake()
+                        error = "Incorrect"
+                    }
+
+                    loginErrorText.text =
+                        resources.getString(R.string.you_entered_your_username_or_password_incorrectly)
                 }
-                binding.loginPasswordField.apply {
-                    shake()
-                    error = "Incorrect"
-                }
-                binding.loginErrorText.text =
-                    resources.getString(R.string.you_entered_your_username_or_password_incorrectly)
             }
 
             ErrorType.Connection -> binding.loginErrorText.text =

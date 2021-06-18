@@ -31,8 +31,10 @@ class OnBoardingViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(onBoardingItem: OnBoardingItem) {
-        binding.imageOnBoarding.setImageResource(onBoardingItem.image)
-        binding.textDescription.text = onBoardingItem.description
-        binding.textTitle.text = onBoardingItem.title
+        with(binding) {
+            imageOnBoarding.setImageResource(onBoardingItem.image)
+            textDescription.text = onBoardingItem.description
+            textTitle.text = onBoardingItem.title
+        }
     }
 }

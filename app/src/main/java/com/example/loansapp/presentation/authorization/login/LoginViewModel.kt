@@ -1,6 +1,5 @@
 package com.example.loansapp.presentation.authorization.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.loansapp.domain.entity.AuthorizeResultType
@@ -28,7 +27,9 @@ class LoginViewModel @Inject constructor(
             userName = name
 
             loginUseCase(name, password)
-                .subscribe(::onSuccess, ::onError)
+                .subscribe(::onSuccess) {
+                    onError()
+                }
                 .untilDestroy()
 
         } else {
@@ -49,8 +50,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun onError(error: Throwable) {
-        Log.i("login error", error.stackTraceToString())
+    private fun onError() {
         sendError(ErrorType.Connection)
     }
 

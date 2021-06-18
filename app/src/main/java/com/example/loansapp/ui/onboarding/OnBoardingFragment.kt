@@ -26,9 +26,11 @@ class OnBoardingFragment : Fragment() {
         binding = OnBoardingFragmentBinding.inflate(layoutInflater, container, false)
 
         val adapter = OnBoardingAdapter()
-        binding.onBoardingViewPager.adapter = adapter
-        binding.onBoardingViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding.onBoardingViewPager.setPageTransformer(ZoomOutPageTransformer())
+        with(binding) {
+            onBoardingViewPager.adapter = adapter
+            onBoardingViewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            onBoardingViewPager.setPageTransformer(ZoomOutPageTransformer())
+        }
 
         adapter.data = getOnBoardingData()
 

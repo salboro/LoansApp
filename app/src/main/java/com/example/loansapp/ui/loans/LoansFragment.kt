@@ -65,6 +65,14 @@ class LoansFragment : Fragment() {
             )
         )
 
+        setViewModelObservers(adapter)
+        setRecyclerViewScrollListener()
+        setToolbarMenuActionsListeners()
+
+        return binding.root
+    }
+
+    private fun setViewModelObservers(adapter: LoansAdapter) {
         viewModel.loansConditionsState.observe(viewLifecycleOwner) { state ->
             renderConditionsState(state)
         }
@@ -72,11 +80,6 @@ class LoansFragment : Fragment() {
         viewModel.loansState.observe(viewLifecycleOwner) { state ->
             renderLoansState(state, adapter)
         }
-
-        setRecyclerViewScrollListener()
-        handleToolbarMenuActions()
-
-        return binding.root
     }
 
     override fun onResume() {
@@ -89,7 +92,7 @@ class LoansFragment : Fragment() {
         viewModel.getLoansConditions()
     }
 
-    private fun handleToolbarMenuActions() {
+    private fun setToolbarMenuActionsListeners() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_refresh -> loadLoansData()
@@ -155,10 +158,13 @@ class LoansFragment : Fragment() {
             }
 
             is LoansViewState.CachedSuccess -> {
-                binding.loansList.isVisible = true
-                binding.onErrorListCard.isVisible = false
-                binding.onEmptyListCard.isVisible = false
-                binding.loansListProgressBar.isVisible = false
+                with(binding) {
+                    loansList.isVisible = true
+                    onErrorListCard.isVisible = false
+                    onEmptyListCard.isVisible = false
+                    loansListProgressBar.isVisible = false
+                }
+
                 adapter.data = state.loans
 
                 showSnackbar()
@@ -167,9 +173,12 @@ class LoansFragment : Fragment() {
             is LoansViewState.Error -> {
                 handleLoansError(state.reason)
 
-                binding.onEmptyListCard.isVisible = false
-                binding.loansListProgressBar.isVisible = false
-                binding.onErrorListCard.isVisible = true
+                with(binding) {
+                    onEmptyListCard.isVisible = false
+                    loansListProgressBar.isVisible = false
+                    onErrorListCard.isVisible = true
+                }
+
                 viewModel.tryGetCachedLoans()
             }
 
@@ -209,34 +218,46 @@ class LoansFragment : Fragment() {
     private fun renderConditionsState(state: LoansConditionsViewState?) {
         when (state) {
             is LoansConditionsViewState.Success -> {
-                binding.loansConditionsCard.setCardBackgroundColor(requireContext().theme.getColor(R.attr.colorSurface))
-                binding.conditionsErrorText.isVisible = false
-                binding.conditionsLayout.isVisible = true
-                binding.loansConditionsProgressBar.isVisible = false
-                binding.percentText.text = resources.getString(
-                    R.string.percent_template,
-                    state.loansConditions.percent
-                )
-                binding.periodText.text =
-                    resources.getString(R.string.period_template, state.loansConditions.period)
-                binding.maxAmountText.text = resources.getString(
-                    R.string.max_amount_template,
-                    state.loansConditions.maxAmount
-                )
+                binding.apply {
+                    loansConditionsCard.setCardBackgroundColor(
+                        requireContext().theme.getColor(R.attr.colorSurface)
+                    )
+
+                    conditionsErrorText.isVisible = false
+                    conditionsLayout.isVisible = true
+                    loansConditionsProgressBar.isVisible = false
+
+                    percentText.text = resources.getString(
+                        R.string.percent_template,
+                        state.loansConditions.percent
+                    )
+
+                    periodText.text =
+                        resources.getString(R.string.period_template, state.loansConditions.period)
+
+                    maxAmountText.text = resources.getString(
+                        R.string.max_amount_template,
+                        state.loansConditions.maxAmount
+                    )
+                }
             }
 
             is LoansConditionsViewState.Error -> {
                 handleLoansConditionsError(state.reason)
 
-                binding.loansConditionsCard.setCardBackgroundColor(requireContext().theme.getColor(R.attr.colorError))
-                binding.loansConditionsProgressBar.isVisible = false
-                binding.conditionsErrorText.isVisible = true
+                with(binding) {
+                    loansConditionsCard.setCardBackgroundColor(requireContext().theme.getColor(R.attr.colorError))
+                    loansConditionsProgressBar.isVisible = false
+                    conditionsErrorText.isVisible = true
+                }
             }
 
             is LoansConditionsViewState.Loading -> {
-                binding.conditionsErrorText.isVisible = false
-                binding.conditionsLayout.isInvisible = true
-                binding.loansConditionsProgressBar.isVisible = true
+                with(binding) {
+                    conditionsErrorText.isVisible = false
+                    conditionsLayout.isInvisible = true
+                    loansConditionsProgressBar.isVisible = true
+                }
             }
         }
     }

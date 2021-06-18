@@ -1,9 +1,9 @@
 package com.example.loansapp.presentation.loans
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.loansapp.data.network.Loan
+import com.example.loansapp.data.network.LoansConditions
 import com.example.loansapp.domain.entity.ErrorType
 import com.example.loansapp.domain.entity.ResultType
 import com.example.loansapp.domain.entity.ThemeType
@@ -29,65 +29,75 @@ class LoansViewModel @Inject constructor(
     fun getLoansConditions() {
         _loansConditionsState.postValue(LoansConditionsViewState.Loading)
 
-        getLoansConditionsUseCase().subscribe({ result ->
-            when (result) {
-                is ResultType.Success -> _loansConditionsState.postValue(
-                    LoansConditionsViewState.Success(
-                        result.data
-                    )
-                )
+        getLoansConditionsUseCase().subscribe(::onGetLoansConditionsSuccess) {
+            onGetLoansConditionsError()
+        }.untilDestroy()
+    }
 
-                is ResultType.Error -> _loansConditionsState.postValue(
-                    LoansConditionsViewState.Error(
-                        result.error
-                    )
-                )
-            }
-        }, {
-            Log.i("msg1", it.stackTraceToString())
+    private fun onGetLoansConditionsError() {
+        _loansConditionsState.postValue(
+            LoansConditionsViewState.Error(
+                ErrorType.Connection
+            )
+        )
+    }
 
-            _loansConditionsState.postValue(
-                LoansConditionsViewState.Error(
-                    ErrorType.Connection
+    private fun onGetLoansConditionsSuccess(result: ResultType<LoansConditions>) {
+        when (result) {
+            is ResultType.Success -> _loansConditionsState.postValue(
+                LoansConditionsViewState.Success(
+                    result.data
                 )
             )
-        }).untilDestroy()
+
+            is ResultType.Error -> _loansConditionsState.postValue(
+                LoansConditionsViewState.Error(
+                    result.error
+                )
+            )
+        }
     }
 
     fun getLoans() {
         _loansState.postValue(LoansViewState.Loading)
 
         getLoansUseCase()
-            .doAfterSuccess { result ->
-                if (result is ResultType.Success) {
-                    addLoansToCache(result.data)
-                }
-            }
-            .subscribe({ result ->
-                when (result) {
-                    is ResultType.Success -> {
-                        _loansState.postValue(
-                            LoansViewState.Success(
-                                result.data
-                            )
-                        )
-                    }
+            .doAfterSuccess(::doAfterSuccessGetLoans)
+            .subscribe(::onGetLoansSuccess) {
+                onGetLoansError()
+            }.untilDestroy()
+    }
 
-                    is ResultType.Error -> _loansState.postValue(
-                        LoansViewState.Error(
-                            result.error
-                        )
-                    )
-                }
-            }, {
-                Log.i("msg2", it.stackTraceToString())
+    private fun doAfterSuccessGetLoans(result: ResultType<List<Loan>>?) {
+        if (result is ResultType.Success) {
+            addLoansToCache(result.data)
+        }
+    }
 
+    private fun onGetLoansError() {
+        _loansState.postValue(
+            LoansViewState.Error(
+                ErrorType.Connection
+            )
+        )
+    }
+
+    private fun onGetLoansSuccess(result: ResultType<List<Loan>>?) {
+        when (result) {
+            is ResultType.Success -> {
                 _loansState.postValue(
-                    LoansViewState.Error(
-                        ErrorType.Connection
+                    LoansViewState.Success(
+                        result.data
                     )
                 )
-            }).untilDestroy()
+            }
+
+            is ResultType.Error -> _loansState.postValue(
+                LoansViewState.Error(
+                    result.error
+                )
+            )
+        }
     }
 
     fun setUserTheme(themeType: ThemeType) {

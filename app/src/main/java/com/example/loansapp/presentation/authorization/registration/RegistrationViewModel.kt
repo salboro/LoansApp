@@ -1,6 +1,5 @@
 package com.example.loansapp.presentation.authorization.registration
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.loansapp.domain.entity.AuthorizeResultType
@@ -21,7 +20,9 @@ class RegistrationViewModel @Inject constructor(
             _state.postValue(RegistrationViewState.Loading)
 
             registrationUseCase(name, password)
-                .subscribe(::onSuccess, ::onError)
+                .subscribe(::onSuccess) {
+                    onError()
+                }
                 .untilDestroy()
 
         } else {
@@ -36,8 +37,7 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
-    private fun onError(error: Throwable) {
-        Log.i("register error", error.stackTraceToString())
+    private fun onError() {
         sendError(ErrorType.Connection)
     }
 
